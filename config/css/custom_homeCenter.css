@@ -1,0 +1,17 @@
+/* һ���˵����� */
+#nav .menus_items {
+    position: absolute !important;
+    width: fit-content !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+/* ��������ɫ */
+#page-header.nav-fixed #nav {
+    background: linear-gradient(60deg, #f1c6d4 0, #c8f1ff 93%);
+    opacity: 0.95;
+    backdrop-filter: var(--backdrop-filter);
+  }
+  [data-theme="dark"] #page-header.nav-fixed #nav {
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+  
