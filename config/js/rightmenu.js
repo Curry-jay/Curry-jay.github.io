@@ -109,6 +109,11 @@ function addRightMenuClickEvent() {
     $("#menu-waitToDo").on("click", (function() {
         rm.hideRightMenu()
 	}))
+
+    $("#menu-home").on("click", (function() {
+        rm.hideRightMenu()
+	}))
+    
     
 }
 
