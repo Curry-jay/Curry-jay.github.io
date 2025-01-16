@@ -14,4 +14,21 @@
   [data-theme="dark"] #page-header.nav-fixed #nav {
     background: rgba(0, 0, 0, 0.95) !important;
   }
+
+/* ���������ҹģʽ���� */
+/* С��������������ҹģʽ���� */
+/* һ��״̬ */
+[data-theme="dark"] .magnet_link_context {
+  background: #1e1e1e;
+  color: antiquewhite;
+  border-radius: 8px;
+}
+/* �������״̬ */
+[data-theme="dark"] .magnet_link_context:hover {
+  background: rgb(54,185,176);
+  color: #f2f2f2;
+  border-radius: 8px;
+}
+/* ��ҳ�������end */
+
   
