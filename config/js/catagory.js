@@ -17,7 +17,10 @@ function categoriesBarActive() {
 			// 获取当前分类
 			var nowCategorie = valuegroup[2];
 			if (document.querySelector('#category-bar')) {
-				document.getElementById(nowCategorie).classList.add("select");
+				if(document.getElementById(nowCategorie)){
+					document.getElementById(nowCategorie).classList.add("select");
+				}
+				
 			}
 		}
 	}
