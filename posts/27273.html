@@ -266,7 +266,7 @@ btf.addGlobalFn('pjaxSend', () => {
 
 <h2 id="Hash的操作"><a href="#Hash的操作" class="headerlink" title="Hash的操作"></a>Hash的操作</h2><p>Hash类似于jdk中的Map,一个key下面以键值对的方式存储数据</p>
 <p>注意key是一个键值对！！！</p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230606200653986-4fe7b3.png" alt="image-20230606200653986"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230606200653986-4fe7b3.png" alt="image-20230606200653986"></p>
 <h3 id="增加-4"><a href="#增加-4" class="headerlink" title="增加"></a>增加</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HSET key field value  设置 key 指定的哈希集中指定字段的值。如果 key 指定的哈希集不存在，会创建一个新的哈希集并与 key 关联。如果字段在哈希集中存在，它将被重写。</span><br><span class="line"></span><br><span class="line">HMSET key field value field value 批量添加name=value键值对到key这个hash类型</span><br></pre></td></tr></table></figure>
 
 <h3 id="查询-3"><a href="#查询-3" class="headerlink" title="查询"></a>查询</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HGet key name  获取hash类型的name键对应的值</span><br><span class="line"></span><br><span class="line">HMGET key field field 批量获取hash类型的键对应的值</span><br><span class="line">hkeys key 返回哈希表 key 中的所有键</span><br><span class="line">hvals key 返回哈希表 key 中的所有值</span><br><span class="line">hgetall key 返回哈希表 key 中，所有的键和值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -318,7 +318,7 @@ btf.addGlobalFn('pjaxSend', () => {
 
 <h2 id="存储对象"><a href="#存储对象" class="headerlink" title="存储对象"></a>存储对象</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">  <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="number">1001</span>,<span class="string">&quot;Curry&quot;</span>,<span class="number">29</span>,<span class="number">0</span>,<span class="string">&quot;Basketball&quot;</span>,<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;student&quot;</span>,student);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">student1</span> <span class="operator">=</span> redisTemplate.opsForValue().get(<span class="string">&quot;student&quot;</span>);</span><br><span class="line"></span><br><span class="line">存储对象--需要序列化</span><br><span class="line">    加入一个对象，传出来就是一个对象</span><br><span class="line">所以对象接口实现<span class="keyword">implements</span> <span class="title class_">Serializable</span>  接口</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230606222705230-1dd37c.png" alt="image-20230606222705230"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230606222705230-1dd37c.png" alt="image-20230606222705230"></p>
 <h1 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h1><p> Redis 提供了两种不同级别的持久化方式：RDB和AOF,可以通过修改redis.windows.conf来进行配置.在加载时，把两个数据做一个并集。 </p>
 <h2 id="Redis持久化-RDB"><a href="#Redis持久化-RDB" class="headerlink" title="Redis持久化-RDB"></a>Redis持久化-RDB</h2><p>RDB 持久化可以在指定的时间间隔内生成数据集的时间点快照,默认开启该模式</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span>  #至少在<span class="number">900</span>秒的时间段内至少有一次改变存储同步一次</span><br><span class="line">save <span class="number">300</span> <span class="number">10</span>  #至少在<span class="number">300</span>秒的时间段内至少有十次改变存储同步一次</span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span>   #至少在<span class="number">60</span>秒的时间段内至少有<span class="number">10000</span>次改变存储同步一次</span><br><span class="line">在这些情况下都会触发RDB存储</span><br><span class="line">如果想关闭RDB存储，那么将上面设置的三个关闭（注释掉）</span><br><span class="line">开启这个语句 #save <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
@@ -475,4 +475,17 @@ btf.addGlobalFn('pjaxSend', () => {
   else if (epage === cpage){
     butterfly_swiper_injector_config();
   }
-  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>

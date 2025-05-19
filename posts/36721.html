@@ -219,7 +219,7 @@ btf.addGlobalFn('pjaxSend', () => {
 </tbody></table>
 <h2 id="汉化APK"><a href="#汉化APK" class="headerlink" title="汉化APK"></a>汉化APK</h2><p>汉化：使用专门的工具对外文版的软件资源进行读取、翻译、修改、回写等一系列处理，使软件的菜单、对话框、提示等用户界面显示为中文，而程序的内核和功能保持不变，这个过程即为软件汉化</p>
 <p><strong>基本上字符串都是在arsc里，建议一键汉化，然后再润色。<br>少量没汉化到的字符串参考视频中的方法定位去逐个汉化。</strong></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231107140413865-44c174.png" alt="image-20231107140413865"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231107140413865-44c174.png" alt="image-20231107140413865"></p>
 <h2 id="初识AndroidManifest-xml"><a href="#初识AndroidManifest-xml" class="headerlink" title="初识AndroidManifest.xml"></a>初识AndroidManifest.xml</h2><p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
 <table>
 <thead>
@@ -446,7 +446,7 @@ btf.addGlobalFn('pjaxSend', () => {
 <p>其余指令可用语法工具查询</p>
 <p>定位方法：搜索弹窗关键字、抓取按钮id</p>
 <h2 id="逆向修改关键"><a href="#逆向修改关键" class="headerlink" title="逆向修改关键"></a>逆向修改关键</h2><p>修改方法：修改判断、强制跳转、修改寄存器的值</p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231107145611048-a59f2f.png" alt="image-20231107145611048"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231107145611048-a59f2f.png" alt="image-20231107145611048"></p>
 <h2 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h2><p>在smali里的所有操作都必须经过寄存器来进行:本地寄存器用v开头数字结尾的符号来表示，如v0、 v1、v2。 参数寄存器则使用p开头数字结尾的符号来表示，如p0、p1、p2。特别注意的是，p0不一定是函数中的第一个参数，在非static函数中，p0代指“this”，p1表示函数的第一个 参数，p2代表函数中的第二个参数。而在static函数中p0才对应第一个参数(因为Java的static方法中没有this方法）</p>
 <h1 id="第四节-恭喜你获得广告-弹窗静默卡"><a href="#第四节-恭喜你获得广告-弹窗静默卡" class="headerlink" title="第四节.恭喜你获得广告&amp;弹窗静默卡"></a>第四节.恭喜你获得广告&amp;弹窗静默卡</h1><h2 id="安卓四大组件"><a href="#安卓四大组件" class="headerlink" title="安卓四大组件"></a>安卓四大组件</h2><table>
 <thead>
@@ -511,7 +511,7 @@ btf.addGlobalFn('pjaxSend', () => {
 <td align="left">当Activity从停止stop状态恢进入start状态时调用状态。</td>
 </tr>
 </tbody></table>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231107170440736-e040da.png" alt="image-20231107170440736"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231107170440736-e040da.png" alt="image-20231107170440736"></p>
 <h2 id="弹窗定位-堆栈分析–处理弹窗类"><a href="#弹窗定位-堆栈分析–处理弹窗类" class="headerlink" title="弹窗定位&amp;堆栈分析–处理弹窗类"></a>弹窗定位&amp;堆栈分析–处理弹窗类</h2><p>修改方法：<br>1.修改xml中的versiocode—不好用<br>2.Hook弹窗(推荐算法助手开启弹窗定位)<br>3.修改dex弹窗代码<br>4.抓包修改响应体(也可以路由器拦截)</p>
 <h2 id="布局优化–处理非弹窗类"><a href="#布局优化–处理非弹窗类" class="headerlink" title="布局优化–处理非弹窗类"></a>布局优化–处理非弹窗类</h2><p>1.开发者助手抓布局<br>2.MT管理器xml搜索定位<br>3.修改xml代码，将要显示的大小设置为0dp</p>
 <p>或者直接隐藏</p>
@@ -529,7 +529,7 @@ btf.addGlobalFn('pjaxSend', () => {
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"> 复制代码 隐藏代码1.  adb shell #adb进入命令行模式</span><br><span class="line"></span><br><span class="line"><span class="bullet">2.</span>  su #切换至超级用户</span><br><span class="line"></span><br><span class="line"><span class="bullet">3.</span>  magisk resetprop ro.debuggable 1</span><br><span class="line"></span><br><span class="line"><span class="bullet">4.</span>  stop;start; #一定要通过该方式重启</span><br></pre></td></tr></table></figure>
 
 <p>方法四:刷入MagiskHide Props Config模块(永久有效，但我这两台手机都不行，哭死，呜呜呜)</p>
-<p>一般来说，在4选项中如果有ro.debuggable那就直接修改<br>没有的话就选5<br><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231108203628346-524db5.png" alt="image-20231108203628346"></p>
+<p>一般来说，在4选项中如果有ro.debuggable那就直接修改<br>没有的话就选5<br><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20231108203628346-524db5.png" alt="image-20231108203628346"></p>
 <p>修改ro.debuggable的值为1</p>
 <h3 id="下段点"><a href="#下段点" class="headerlink" title="下段点"></a>下段点</h3><p>将要用的APP拖入到JEB里面，注意如果要按照第一种方式修改，修改完成后要拖入修改完成后的APP</p>
 <p>ctrl+b下断点</p>
@@ -709,4 +709,17 @@ btf.addGlobalFn('pjaxSend', () => {
   else if (epage === cpage){
     butterfly_swiper_injector_config();
   }
-  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>

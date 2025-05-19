@@ -294,7 +294,7 @@ btf.addGlobalFn('pjaxSend', () => {
 <td>启动LlamaBoard前端页面，包含可视化训练，预测，chat，模型合并多个子页面</td>
 </tr>
 </tbody></table>
-<h2 id="运行完成后尝试进行推理"><a href="#运行完成后尝试进行推理" class="headerlink" title="运行完成后尝试进行推理"></a>运行完成后尝试进行推理</h2><p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/04/25/image-20250227132033017-a58804-9b523e.png" alt="image-20250227132033017"></p>
+<h2 id="运行完成后尝试进行推理"><a href="#运行完成后尝试进行推理" class="headerlink" title="运行完成后尝试进行推理"></a>运行完成后尝试进行推理</h2><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/04/25/image-20250227132033017-a58804-9b523e.png" alt="image-20250227132033017"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[INFO|trainer.py:4263] 2025-02-26 16:46:40,376 &gt;&gt;   Batch size = 1</span><br><span class="line">100%|█████████████████████████████████████████████████████████████████████████████████████| 105/105 [00:10&lt;00:00,  9.67it/s]</span><br><span class="line">***** eval metrics *****</span><br><span class="line">  epoch                   =     4.9851</span><br><span class="line">  eval_loss               =     1.8326</span><br><span class="line">  eval_runtime            = 0:00:10.94</span><br><span class="line">  eval_samples_per_second =     19.188</span><br><span class="line">  eval_steps_per_second   =      9.594</span><br><span class="line">[INFO|modelcard.py:449] 2025-02-26 16:46:51,323 &gt;&gt; Dropping the following result as it does not have all the necessary fields:</span><br><span class="line">&#123;&#x27;task&#x27;: &#123;&#x27;name&#x27;: &#x27;Causal Language Modeling&#x27;, &#x27;type&#x27;: &#x27;text-generation&#x27;&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -303,7 +303,7 @@ btf.addGlobalFn('pjaxSend', () => {
 
 
 
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/04/25/image-20250227141543068-f3979a.png" alt="image-20250227141543068"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/04/25/image-20250227141543068-f3979a.png" alt="image-20250227141543068"></p>
 <h2 id="批量预测和训练效果评估"><a href="#批量预测和训练效果评估" class="headerlink" title="批量预测和训练效果评估"></a>批量预测和训练效果评估</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">当然上文中的人工交互测试，会偏感性，那有没有办法批量地预测一批数据，然后使用自动化的bleu和 rouge等常用的文本生成指标来做评估。指标计算会使用如下3个库，请先做一下pip安装</span><br><span class="line"></span><br><span class="line">pip install jieba</span><br><span class="line">pip install rouge-chinese</span><br><span class="line">pip install nltk</span><br></pre></td></tr></table></figure>
 
 
@@ -521,4 +521,17 @@ btf.addGlobalFn('pjaxSend', () => {
   else if (epage === cpage){
     butterfly_swiper_injector_config();
   }
-  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>

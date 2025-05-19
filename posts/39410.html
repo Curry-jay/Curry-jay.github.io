@@ -160,7 +160,7 @@ btf.addGlobalFn('pjaxSend', () => {
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">对于堆实现优先队列来说，可以将堆按照数组的方式进行存储，可以很容易证得 对于k节点的左节点是2k，右节点是2k+<span class="number">1</span>,所以需要以这种方式来进行实现。</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">实现：</span><br><span class="line">    需要一个数组（不一定的整数数组，Comparable去存储）去存储当前队列元素</span><br><span class="line">    需要N存储当前队列元素个数</span><br><span class="line">    less方法用来比较两个元素大小</span><br><span class="line">    exch方法用来交换两个元素位置</span><br><span class="line">    一个上浮函数去进行元素上调，当一个元素加入到底部的时候，需要上调放到合适的位置，和他所在二叉树的根节点进行比较，如果大于根节点，那么就往上浮，直到上升到根</span><br><span class="line">    一个下沉函数进行函数下调，当前节点和子节点比较，如果小于最大子节点，那么下沉交换位置到合适位置即可。</span><br><span class="line">    </span><br><span class="line">    插入：将一个元素放入堆最后，之后上升即可</span><br><span class="line">    删除：将最后一个元素放在根节点，然后进行下沉，根节点数量减少</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230308191513580-0fd0af.png" alt="image-20230308191513580"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230308191513580-0fd0af.png" alt="image-20230308191513580"></p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PriorityQueue()   无参构造器，默认容量<span class="number">11</span>和自然顺序进行排序</span><br><span class="line">PriorityQueue(<span class="type">int</span> capacity)  指定大小</span><br><span class="line">PriorityQueue(Comparator&lt;?<span class="built_in">super</span> E&gt; comparator) 采用自己定义比较器</span><br><span class="line">    eg:PriorityQueue&lt;Integer&gt; minTop = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(k,(a, b) -&gt; a -b);</span><br><span class="line"> <span class="comment">// k 堆的初始容量，(a,b) -&gt; a -b 比较器</span></span><br></pre></td></tr></table></figure>
 
 
@@ -172,14 +172,14 @@ btf.addGlobalFn('pjaxSend', () => {
 
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ArrayDeque: 基于数组实现的线性双向队列，通常作为栈或队列使用，但是栈的效率不如LinkedList高。</span><br><span class="line">LinkedList: 基于链表实现的链式双向队列，通常作为栈或队列使用，但是队列的效率不如ArrayQueue高</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230329194214638-5b7ee4.png" alt="image-20230329194214638"></p>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301170137604-0116a2.png" alt="image-20230301170137604"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230329194214638-5b7ee4.png" alt="image-20230329194214638"></p>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301170137604-0116a2.png" alt="image-20230301170137604"></p>
 <p>利用hashMap进行计算</p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301203758010-858189.png" alt="image-20230301203758010"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301213501073-22055d.png" alt="image-20230301213501073"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301212402511-1884d1.png" alt="image-20230301212402511"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230305151027297-702e49.png" alt="image-20230305151027297"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230306195849654-7eafb6.png" alt="image-20230306195849654"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301203758010-858189.png" alt="image-20230301203758010"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301213501073-22055d.png" alt="image-20230301213501073"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230301212402511-1884d1.png" alt="image-20230301212402511"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230305151027297-702e49.png" alt="image-20230305151027297"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230306195849654-7eafb6.png" alt="image-20230306195849654"></p>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>对Map数组进行遍历</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Set&lt;Map.Entry&lt;String,Integer&gt;&gt; en=buy.entrySet();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : en) &#123;</span><br><span class="line">    String key=entry.getKey();</span><br><span class="line">    Integer value=entry.getValue();</span><br><span class="line">    System.out.println(key+<span class="string">&quot;-&gt;&gt;&gt;&quot;</span>+value);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -200,27 +200,27 @@ btf.addGlobalFn('pjaxSend', () => {
 
 
 
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230307144106602-b8d8c6.png" alt="image-20230307144106602"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230309163602863-91dbd6.png" alt="image-20230309163602863"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230307144106602-b8d8c6.png" alt="image-20230307144106602"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230309163602863-91dbd6.png" alt="image-20230309163602863"></p>
 <p>动态规划</p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230310105743449-14c4a1.png" alt="image-20230310105743449"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230313155352901-d3d436.png" alt="image-20230313155352901"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230315205603155-95abd1.png" alt="image-20230315205603155"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230310105743449-14c4a1.png" alt="image-20230310105743449"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230313155352901-d3d436.png" alt="image-20230313155352901"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230315205603155-95abd1.png" alt="image-20230315205603155"></p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>对于回文串的问题来说，一般回文串都可以用动态规划这个经典解法进行计算</p>
 <h1 id="数与位"><a href="#数与位" class="headerlink" title="数与位"></a>数与位</h1><h2 id="进制转化"><a href="#进制转化" class="headerlink" title="进制转化"></a>进制转化</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer.toString(num,n) </span><br><span class="line">    上面代码的作用就将十进制s转化为n进制的</span><br><span class="line">Integer.bitCount(num);</span><br><span class="line">	内置了计算二进制表达中<span class="number">1</span>的数量的函数</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230320222134457-56fb65.png" alt="image-20230320222134457"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230321155221397-ee9aca.png" alt="image-20230321155221397"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230322134629952-d5eb03.png" alt="image-20230322134629952"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230322145420125-a6092b.png" alt="image-20230322145420125"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230323161909273-5f0851.png" alt="image-20230323161909273"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230323162003726-0a7bbf.png" alt="image-20230323162003726"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230323171805981-02de95.png" alt="image-20230323171805981"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230326192119896-6640eb.png" alt="image-20230326192119896"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230327144319801-ccf706.png" alt="image-20230327144319801"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230328151217301-480f2b.png" alt="image-20230328151217301"></p>
-<h1 id="50-题方法！！！！！！！！32-方法！！！！！！！！！！！"><a href="#50-题方法！！！！！！！！32-方法！！！！！！！！！！！" class="headerlink" title="50 题方法！！！！！！！！32 方法！！！！！！！！！！！"></a>50 题方法！！！！！！！！32 方法！！！！！！！！！！！</h1><h1 id="栈与递归"><a href="#栈与递归" class="headerlink" title="栈与递归"></a>栈与递归</h1><p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230330200729011-7484fd.png" alt="image-20230330200729011"></p>
-<p><img src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230829163708815-dd62f6.png" alt="image-20230829163708815"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230320222134457-56fb65.png" alt="image-20230320222134457"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230321155221397-ee9aca.png" alt="image-20230321155221397"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230322134629952-d5eb03.png" alt="image-20230322134629952"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230322145420125-a6092b.png" alt="image-20230322145420125"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230323161909273-5f0851.png" alt="image-20230323161909273"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230323162003726-0a7bbf.png" alt="image-20230323162003726"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230323171805981-02de95.png" alt="image-20230323171805981"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230326192119896-6640eb.png" alt="image-20230326192119896"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230327144319801-ccf706.png" alt="image-20230327144319801"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230328151217301-480f2b.png" alt="image-20230328151217301"></p>
+<h1 id="50-题方法！！！！！！！！32-方法！！！！！！！！！！！"><a href="#50-题方法！！！！！！！！32-方法！！！！！！！！！！！" class="headerlink" title="50 题方法！！！！！！！！32 方法！！！！！！！！！！！"></a>50 题方法！！！！！！！！32 方法！！！！！！！！！！！</h1><h1 id="栈与递归"><a href="#栈与递归" class="headerlink" title="栈与递归"></a>栈与递归</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230330200729011-7484fd.png" alt="image-20230330200729011"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20230829163708815-dd62f6.png" alt="image-20230829163708815"></p>
 <h1 id="20250228"><a href="#20250228" class="headerlink" title="20250228"></a>20250228</h1><p>今日一题设计食物评分，感觉意义不是很大，但是自己做超时了</p>
 <p>(题目链接)[<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-a-food-rating-system/description/]">https://leetcode.cn/problems/design-a-food-rating-system/description/]</a></p>
 <p>题解用树方式构造，但是没见过这种方式，等以后有机会研究一下</p>
@@ -368,4 +368,17 @@ btf.addGlobalFn('pjaxSend', () => {
   else if (epage === cpage){
     butterfly_swiper_injector_config();
   }
-  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>
