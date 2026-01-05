@@ -1,0 +1,239 @@
+
+:root {
+    --heo-white: #fff;
+    --heo-black: #000;
+    --heo-none: rgba(0, 0, 0, 0);
+    --heo-gray: #999999;
+    --heo-yellow: #ffc93e;
+    --heo-main: var(--heo-theme);
+    --heo-main-op: var(--heo-theme-op);
+    --heo-shadow-theme: 0 8px 12px -3px var(--heo-theme-op);
+    --heo-shadow-main: 0 8px 12px -3px var(--heo-main-op);
+    --heo-shadow-blue: 0 8px 12px -3px rgba(40, 109, 234, .20);
+    --heo-shadow-white: 0 8px 12px -3px rgba(255, 255, 255, .20);
+    --heo-shadow-black: 0 0 12px 4px rgba(0, 0, 0, .05);
+    --heo-shadow-yellow: 0px 38px 77px -26px rgba(255, 201, 62, .12);
+    --heo-shadow-red: 0 8px 12px -3px #ee7d7936;
+    --heo-shadow-green: 0 8px 12px -3px #87ee7936;
+    --heo-logo-color: linear-gradient(215deg, #4584ff 30%, #ff7676 70%);
+    --style-border: 1px solid var(--heo-card-border);
+    --style-border-hover: 1px solid var(--heo-theme);
+}
+
+::selection {
+    background: var(--heo-fontcolor);
+    color: var(--heo-background);
+}
+
+[data-theme='light'] {
+    --heo-theme: #425AEF;
+    --heo-theme-op: #4259ef23;
+    --heo-blue: #425AEF;
+    --heo-red: #D8213C;
+    --heo-pink: #FF7C7C;
+    --heo-green: #57bd6a;
+    --heo-fontcolor: #363636;
+    --heo-background: #f7f9fe;
+    --heo-reverse: #000;
+    --heo-maskbg: rgba(255, 255, 255, 0.6);
+    --heo-maskbgdeep: rgba(255, 255, 255, 0.85);
+    --heo-hovertext: var(--heo-theme);
+    --heo-ahoverbg: #F7F7FA;
+    --heo-lighttext: var(--heo-main);
+    --heo-secondtext: rgba(60, 60, 67, 0.6);
+    --heo-scrollbar: rgba(60, 60, 67, 0.4);
+    --heo-card-btn-bg: #edf0f7;
+    --heo-post-blockquote-bg: #fafcff;
+    --heo-post-tabs-bg: #f2f5f8;
+    --heo-secondbg: #edf0f7;
+    --heo-shadow-nav: 0 5px 12px -5px rgba(102, 68, 68, 0.05);
+    --heo-card-bg: #fff;
+    --heo-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0.00);
+    --heo-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0.00);
+    --heo-card-border: #e3e8f7;
+}
+
+[data-theme='dark'] {
+    --heo-theme: #0084FF;
+    --heo-theme-op: #0084FF23;
+    --heo-blue: #0084FF;
+    --heo-red: #FF3842;
+    --heo-pink: #FF7C7C;
+    --heo-green: #57bd6a;
+    --heo-fontcolor: #F7F7FA;
+    --heo-background: #ceced3;
+    --heo-reverse: #fff;
+    --heo-maskbg: rgba(0, 0, 0, 0.6);
+    --heo-maskbgdeep: rgba(0, 0, 0, 0.85);
+    --heo-hovertext: #0A84FF;
+    --heo-ahoverbg: #fff;
+    --heo-lighttext: #f2b94b;
+    --heo-secondtext: #a1a2b8;
+    --heo-scrollbar: rgba(200, 200, 223, 0.4);
+    --heo-card-btn-bg: #30343f;
+    --heo-post-blockquote-bg: #000;
+    --heo-post-tabs-bg: #121212;
+    --heo-secondbg: #30343f;
+    --heo-shadow-nav: 0 5px 20px 0px rgba(28, 28, 28, 0.4);
+    --heo-card-bg: #1d1b26;
+    --heo-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0.0);
+    --heo-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0.0);
+    --heo-card-border: #42444a;
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --style-border: 0px solid var(--heo-card-border);
+        --style-border-hover: 0px solid var(--heo-theme);
+    }
+}
+
+
+/* 首页分类条展示 */
+#category-bar {
+    /* padding:  0.5rem; */
+    background: var(--heo-background);
+    border-radius: 8px;
+    box-shadow: var(--card-box-shadow);
+    display: flex;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    /* margin-bottom: 1rem;
+    margin-top: 1rem; */
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+@media screen and (max-width: 768px) {
+    #category-bar {
+        border-radius: 0;
+    }
+}
+
+#category #category-bar {
+    border: none;
+}
+
+#category a.category-bar-item.select a {
+    display: none;
+}
+
+.category-in-bar {
+    display: flex;
+    white-space: nowrap;
+}
+
+.category-in-bar-tips {
+    margin-top: 1.3rem;
+    /* padding: 1.4rem 1rem 0.4rem 0.5rem; */
+    padding-right: 1rem;
+}
+
+.category-bar-items {
+    white-space: nowrap;
+    overflow-x: auto;
+    display: flex;
+    position: relative;
+}
+.category-bar-items-tags {
+    white-space: nowrap;
+    overflow-x: scroll;
+    display: flex;
+    position: relative;
+}
+.category-bar-items::-webkit-scrollbar {
+    display: none;
+}
+
+.category-bar-item a {
+    font-size: 1rem;
+    padding: 0.1rem 1rem;
+    margin: 0 0.25rem;
+    font-weight: bold;
+    border-radius: 12px;
+    color: #363636;
+}
+
+.category-bar-item .category-bar-item-parent:hover {
+    background: var(--heo-main);
+    color: var(--heo-white);
+}
+
+.category-bar-item.category-bar-item-parent  {
+    background: var(--heo-main);
+    color: var(--heo-white);
+    border-radius: 8px;
+}
+
+.category-bar-item ul, ol {
+    list-style: none; /* 去除项目符号或数字 */
+    padding: 0;  /* 移除默认的缩进 */
+    margin: 0;   /* 移除默认的外边距 */
+}
+
+/* 父节点样式 */
+.category-bar-item {
+    position: relative; /* 为了让子节点可以绝对定位 */
+    cursor: pointer;
+    display: inline-block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+/* 子节点初始隐藏 */
+.category-sub-items {
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color: var(--heo-background);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* 确保子菜单在其他内容上方 */
+    padding-left: 0px;
+    margin-top: 0.4rem;
+  }
+/* top: 100%; /* 子节点放在父节点下面  */
+/* 当父节点移入时，显示子节点 */
+.category-bar-item:hover .category-sub-items {
+    display: block;
+ 
+}
+
+
+.category-bar-more {
+    font-size: 1rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    color: #363636;
+    padding-bottom: 10px;
+    padding-top: 14px;
+}
+
+.category-bar-item>ul>li{
+    float: left;
+    height: 30px;
+    background-color: var(--heo-background);
+    line-height: 30px; /* 提供一致的行高 */
+    font-size: 15px;
+    text-align: center;
+ 
+}
+
+.category-bar-item > ul{
+    max-height: 0; /* 初始最大高度为 0，隐藏列表 */
+    transition: max-height 0.5s ease; /* 过渡效果 */
+    overflow-y: scroll; /* 确保内容不会溢出 */
+    background-color: var(--heo-background);
+    display: block;
+}
+
+/* 鼠标悬停时展开子菜单 */
+.category-bar-item:hover > ul {
+   max-height: 360px; /* 展开最大高度，确保足够展示所有内容 */
+}
+
+
+/* 鼠标悬停 li 时改变背景色 */
+.category-bar-item li:hover .category-bar-item-child {
+    background: var(--heo-main);
+    color: var(--heo-white);
+}
+

@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Junit操作 | Curry的小屋</title><meta name="author" content="Curry Jay"><meta name="copyright" content="Curry Jay"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Junit操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Junit操作">
+<meta property="og:url" content="https://curry-jay.github.io/posts/31992.html">
+<meta property="og:site_name" content="Curry的小屋">
+<meta property="og:description" content="Junit操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://curry-jay.github.io/image/top/other/Junit.jpg">
+<meta property="article:published_time" content="2025-01-06T07:32:42.000Z">
+<meta property="article:modified_time" content="2025-06-27T10:20:49.840Z">
+<meta property="article:author" content="Curry Jay">
+<meta property="article:tag" content="其他">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://curry-jay.github.io/image/top/other/Junit.jpg"><link rel="shortcut icon" href="/image/favicon.png"><link rel="canonical" href="https://curry-jay.github.io/posts/31992.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Curry Jay","link":"链接: ","source":"来源: Curry的小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Junit操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/config/css/custom_homeCenter.css?v1"><link rel="stylesheet" href="/config/css/catagory.css?v1"><link rel="stylesheet" href="/config/css/tag.css?v1"><link rel="stylesheet" href="/config/css/rightmenu.css?v1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/theme-chalk/index.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="fas fa-angle-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="fas fa-angle-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="fas fa-sync-alt"></i></div><div class="rightMenu-item" id="menu-darkmode"><i class="fas fa-adjust"></i></div><a class="rightMenu-item" href="/" id="menu-home"><i class="fas fa-home"></i></a></div><div class="rightMenu-group rightMenu-line rightMenuPost"><div class="rightMenu-item" id="menu-reading"><i class="fas fa-book"></i><span>阅读模式</span></div><div class="rightMenu-item" id="menu-postlink"><i class="fas fa-link"></i><span>复制本文地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="fas fa-copy"></i><span>复制内容</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="fas fa-paste"></i><span>粘贴内容</span></div><div class="rightMenu-item" id="menu-search"><i class="fas fa-search"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="fab fa-internet-explorer"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="fas fa-external-link-alt"></i><span>新建窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="fas fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="fas fa-image"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="fas fa-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-copylinkimg"><i class="fas fa-link"></i><span>复制图片链接</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-translate"><i class="fas fa-language"></i><span>繁简转换</span></a><div class="rightMenu-item" id="menu-asidehide"><i class="fas fa-bars"></i><span>边栏控制</span></div></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/tags/" id="menu-tags"><i class="fas fa-tags"></i><span>文章标签</span></a><a class="rightMenu-item" href="/posts/48081.html" id="menu-waitToDo"><i class="fas fa-th-list"></i><span>待办清单</span></a><a class="rightMenu-item" href="/categories/" id="menu-folder-open"><i class="fas fa-folder-open"></i><span>博客分类</span></a><a class="rightMenu-item" href="/posts/18872.html" id="menu-copyright"><i class="fas fa-copyright"></i><span>初衷申明</span></a></div></div><div id="rightMenu-mask"></div><div id="web_bg" style="background-color: #c0c3c5;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/top/other/Junit.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/image/loading.gif" data-lazy-src="/image/curry.jpg" alt="Logo"><span class="site-name">Curry的小屋</span></a><a class="nav-page-title" href="/"><span class="site-name">Junit操作</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div><div id="nav-right"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></div></nav><div id="post-info"><h1 class="post-title">Junit操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-06T07:32:42.000Z" title="发表于 2025-01-06 15:32:42">2025-01-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-27T10:20:49.840Z" title="更新于 2025-06-27 18:20:49">2025-06-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="Junit概述"><a href="#Junit概述" class="headerlink" title="Junit概述"></a><code>Junit</code>概述</h2><h2 id="Junit定义："><a href="#Junit定义：" class="headerlink" title="Junit定义："></a><code>Junit</code>定义：</h2><p>官方地址：<code>Junit4</code>——<a target="_blank" rel="noopener" href="https://junit.org/junit4/">https://junit.org/junit4/</a> </p>
+<p>​				<code>Junit5</code>——<a target="_blank" rel="noopener" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
+<p>官方文档：</p>
+<p>​	<code>JUnit</code> is a simple framework to write repeatable tests. It is an instance of the <code>xUnit</code> architecture for unit testing frameworks.</p>
+<p><code>JUnit</code>是一个编写可重复测试的简单框架。 它是用于单元测试框架的<code>xUnit</code>架构的一个实例。</p>
+<p><code>xUnit</code> 又是什么呢？</p>
+<p><code>xUnit</code>是一套基于测试驱动开发的测试框架。</p>
+<p><code>xUnit</code>包括：<code>PythonUnit</code>、<code>CppUnit</code>等等。<code>JUnit</code>应该算是<code>xUnit</code>家族最成功的一个了。</p>
+<h2 id="为什么要使用Junit"><a href="#为什么要使用Junit" class="headerlink" title="为什么要使用Junit"></a>为什么要使用<code>Junit</code></h2><p>​	使用<code>JUnit</code>能够帮助我们减少在开发过程中的错误，把Bug扼杀在萌芽之中，有利于代码的后期维护和检查。做好了单元测试可以缩短开发周期，提高代码质量。这样我们就可以把更多的时间用到我们应该干的事情上来而不是去解决项目后期发现的越来越多的令人头疼的问题。</p>
+<p>测试不是用来证明你是对的，而是用来证明你没有错。</p>
+<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ul>
+<li><code>JUnit</code> 是一个开放的资源框架，用于编写和运行测试。</li>
+<li>提供注释来识别测试方法。</li>
+<li>提供断言来测试预期结果。</li>
+<li>提供测试运行来运行测试。</li>
+<li><code>JUnit</code>测试允许你编写代码更快，并能提高质量。</li>
+<li><code>JUnit</code> 优雅简洁。没那么复杂，花费时间较少。</li>
+<li><code>JUnit</code> 测试可以自动运行并且检查自身结果并提供即时反馈。所以也没有必要人工梳理测试结果的报告。</li>
+<li><code>JUnit</code> 测试可以被组织为测试套件，包含测试用例，甚至其他的测试套件。</li>
+<li><code>JUnit</code> 在一个条中显示进度。如果运行良好则是绿色；如果运行失败，则变成红色。</li>
+</ul>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="eclipse"><a href="#eclipse" class="headerlink" title="eclipse:"></a>eclipse:</h3><p>方法一：</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605144353007-4a79b3.png" alt="image-20220605144353007"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605144648929-da32b2.png" alt="image-20220605144648929"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605145231847-d13da1.png" alt="image-20220605145231847"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605145258357-03fadb.png" alt="image-20220605145258357"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605145325484-34ca47.png" alt="image-20220605145325484"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JunitText</span> &#123;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text</span><span class="params">()</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;hello, Junit&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605145804068-e672ce.png" alt="image-20220605145804068"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/20140708111458906-4a1941.png" alt="img"></p>
+<p>Junit Window 有以下特性：</p>
+<ul>
+<li><strong>① Runs:</strong> 显示了执行了的junit测试用例(方法)总数</li>
+<li><strong>② Errors:</strong> 显示结果为error&#x2F;exception的测试用例总数</li>
+<li>**③ Failures:**显示测试用例执行失败总数</li>
+<li>**④ Failure Trace:**展示 error&#x2F;exception or failure trace</li>
+<li>**⑤ Show Failures Only:**只显示失败的用例信息</li>
+<li>**⑥ Scroll Lock:**scroll lock</li>
+<li><strong>⑦ Rerun Test:</strong> 重新运行测试用例</li>
+<li>**⑧ Rerun Test – Failure First:**重新运行测试用例，先执行失败了的测试用例</li>
+<li>**⑨ Stop Junit Test Run:**停止单元测试</li>
+<li>**⑩ Test Run History:**显示测试用例运行历史</li>
+</ul>
+<p>方法二：</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605150655607-ee1c5f.png" alt="image-20220605150655607"></p>
+<h3 id="IDEA配置"><a href="#IDEA配置" class="headerlink" title="IDEA配置"></a>IDEA配置</h3><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605151417275-506e07.png" alt="image-20220605151417275"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605151729972-d722a7.png" alt="image-20220605151729972"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605151745079-358a02.png" alt="image-20220605151745079"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JunitText</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello,junit!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Maven配置"><a href="#Maven配置" class="headerlink" title="Maven配置"></a>Maven配置</h3><p>打开<code>pom.xml</code>文件配置下面这段话<img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605153216693-6716d9.png" alt="image-20220605153216693"></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.13.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>  maven自动配置在test区域内运行</span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Junit入门"><a href="#Junit入门" class="headerlink" title="Junit入门"></a>Junit入门</h2><p>用JUnit写单元测试，首先是定义一个单元测试类；然后在类中定义测试方法，使用@Test标签即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testJunit</span><span class="params">()</span> &#123;</span><br><span class="line">        String str= <span class="string">&quot;Junit is working fine&quot;</span>;</span><br><span class="line">        assertEquals(<span class="string">&quot;Junit is working fine&quot;</span>,str);</span><br><span class="line"><span class="comment">//        assertTrue(&quot;Junit is working fine&quot; == str);</span></span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>断言</strong></p>
+<p>对于上述每一个方法，都可以在最前面增加一个String类型的参数message，作为失败时的错误提示</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertEquals(expected, actual)</td>
+<td>验证预期值与真实值是否相等，Fail则给出错误提示，message是一个可供选择的String，用来在Fail时给出错误提示</td>
+</tr>
+<tr>
+<td>assertEquals(expected, actual, delta)</td>
+<td>对浮点数类型的判断提供一定的容错</td>
+</tr>
+<tr>
+<td>assertTrue(boolean condition)</td>
+<td>验证contidion的值是true</td>
+</tr>
+<tr>
+<td>assertFalse(boolean condition)</td>
+<td>验证contidion的值是false</td>
+</tr>
+<tr>
+<td>assertNull(Object obj)</td>
+<td>验证obj的值是null</td>
+</tr>
+<tr>
+<td>assertNotNull(Object obj)</td>
+<td>验证obj的值不是null</td>
+</tr>
+<tr>
+<td>assertSame(expected, actual)</td>
+<td>验证expected和actual是同一个对象，即指向同一个对象</td>
+</tr>
+<tr>
+<td>assertNotSame(expected, actual)</td>
+<td>验证expected和actual不是同一个对象，即指向不同的对象</td>
+</tr>
+<tr>
+<td>assertArrayEquals(expectedArray, resultArray)</td>
+<td>验证两个数组是否相等</td>
+</tr>
+<tr>
+<td>fail()</td>
+<td>让测试方法失败</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testAssertions</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//test data</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span> (<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span> (<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">str6</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">val1</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">val2</span> <span class="operator">=</span> <span class="number">6</span>;</span><br><span class="line">    String[] expectedArray = &#123;<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>&#125;;</span><br><span class="line">    String[] resultArray =  &#123;<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check that two objects are equal</span></span><br><span class="line">    assertEquals(str1, str4);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check that a condition is true</span></span><br><span class="line">    assertTrue (val1 &lt; val2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check that a condition is false</span></span><br><span class="line">    assertFalse(val1 &gt; val2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check that an object isn&#x27;t null</span></span><br><span class="line">    assertNotNull(str6);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check that an object is null</span></span><br><span class="line">    assertNull(str3);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check if two object references point to the same object</span></span><br><span class="line">    assertSame(str4,str5);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check if two object references not point to the same object</span></span><br><span class="line">    assertNotSame(str1,str2);</span><br><span class="line">    assertNotSame(str1,str4);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Check whether two arrays are equal to each other.</span></span><br><span class="line">    assertArrayEquals(expectedArray, resultArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行过程</strong></p>
+<ul>
+<li><p>beforeClass() 方法首先执行，并且只执行一次。</p>
+</li>
+<li><p>afterClass() 方法最后执行，并且只执行一次。</p>
+</li>
+<li><p>before() 方法针对每一个测试用例执行，但是是在执行测试用例之前。</p>
+</li>
+<li><p>after() 方法针对每一个测试用例执行，但是是在执行测试用例之后。</p>
+</li>
+<li><p>在 before() 方法和 after() 方法之间，执行每一个测试用例。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//execute only once, in the starting</span></span><br><span class="line"><span class="meta">@BeforeClass</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">beforeClass</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;in before class&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//execute only once, in the end</span></span><br><span class="line"><span class="meta">@AfterClass</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title function_">afterClass</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;in after class&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//execute for each test, before executing test</span></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;in before&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//execute for each test, after executing test</span></span><br><span class="line"><span class="meta">@After</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">after</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;in after&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//test case 1</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCase1</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;in test case 1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//test case 2</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCase2</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;in test case 2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试套件</strong></p>
+<p>在实际项目中，随着项目进度的开展，单元测试类会越来越多，可是直到现在我们还只会一个一个的单独运行测试类，这在实际项目实践中肯定是不可行的。为了解决这个问题，JUnit 提供了一种批量运行测试类的方法，叫做测试套件。</p>
+<p>这样，每次需要验证系统功能正确性时，只执行一个或几个测试套件便可以了。测试套件的写法非常简单，我们需要遵循以下规则：</p>
+<ol>
+<li>创建一个空类作为测试套件的入口。</li>
+<li>使用注解 org.junit.runner.RunWith 和 org.junit.runners.Suite.SuiteClasses 修饰这个空类。</li>
+<li>将 org.junit.runners.Suite 作为参数传入注解 RunWith，以提示 JUnit 为此类使用套件运行器执行。</li>
+<li>将需要放入此测试套件的测试类组成数组作为注解 SuiteClasses 的参数。</li>
+<li>保证这个空类使用 public 修饰，而且存在公开的不带有任何参数的构造函数</li>
+</ol>
+<p>新建JunitTestOne测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;测试一。。。&quot;</span>);  </span><br><span class="line">    Assert.assertTrue(<span class="literal">true</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建JunitTestTwo测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;测试二。。。&quot;</span>);  </span><br><span class="line">     Assert.assertTrue(<span class="literal">true</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试套件</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith(Suite.class)</span></span><br><span class="line"><span class="meta">@SuiteClasses(&#123; JunitTestOne.class,JunitTestTwo.class &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AllTests</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>很多时候，因为某些原因（比如正式代码还没有实现等），我们可能想让JUnit忽略某些方法，让它在跑所有测试方法的时候不要跑这个测试方法。要达到这个目的也很简单，只需要在要被忽略的测试方法前面加上 @Ignore 就可以了</p>
+<p>@Test(expected &#x3D; IllegalArgumentException.class) 表示验证这个测试方法将抛出 IllegalArgumentException 异常，如果没有抛出的话，则测试失败。</p>
+<h2 id="忽略测试"><a href="#忽略测试" class="headerlink" title="忽略测试"></a>忽略测试</h2><p>有时候当你测试类的时候，当中有的方法还没有完全写好，这时测试用例去测试就可能会失败。</p>
+<p>@Ignore注释可以解决这个问题。</p>
+<h3 id="创建一个类"><a href="#创建一个类" class="headerlink" title="创建一个类"></a>创建一个类</h3><p>先创建一个被测试的类MessageUtil.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这个类用于打印给定的message</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MessageUtil</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line">    <span class="comment">//获取信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MessageUtil</span><span class="params">(String message)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.message=message;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//进行打印</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">printMessage</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(message);</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//向message中添加一个”hi！“</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">salutationMessage</span><span class="params">()</span>&#123;</span><br><span class="line">        message = <span class="string">&quot;hi!&quot;</span>+message;</span><br><span class="line">        System.out.println(message);</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Test-Case类"><a href="#创建Test-Case类" class="headerlink" title="创建Test Case类"></a>创建Test Case类</h3><p>1.创建TestJunit.java测试类用以测试<code>printMessage</code>方法（打印message）与<code>salutationmessage</code>方法（在message中添加”hi!”）</p>
+<p>2.在类中加入测试方法<code>TestPrintMessage()</code> 和 <code>testSalutationMessage()</code></p>
+<p>3.在<code>TestPrintMessage()</code> 上添加@Ignore</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Ignore;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertEquals;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Testcase</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;I is back&quot;</span>;</span><br><span class="line">    <span class="type">MessageUtil</span> <span class="variable">messageUtil</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MessageUtil</span>(message);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Ignore</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPrintMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside testPrintMessage()&quot;</span>);</span><br><span class="line">        message = <span class="string">&quot;Robert&quot;</span>;</span><br><span class="line">        <span class="comment">//设置断言</span></span><br><span class="line">        assertEquals(message,messageUtil.printMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSalutationMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside testSalutationMessage()&quot;</span>);</span><br><span class="line">        message = <span class="string">&quot;Hi!&quot;</span> + <span class="string">&quot;i am back&quot;</span>;</span><br><span class="line">        <span class="comment">//设置断言</span></span><br><span class="line">        assertEquals(message,messageUtil.salutationMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Test-Runner"><a href="#创建Test-Runner" class="headerlink" title="创建Test Runner"></a>创建Test Runner</h3><p>用来执行测试用例</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> junit.framework.TestCase;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.JUnitCore;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.Result;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.notification.Failure;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestRunner</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Result</span> <span class="variable">result</span> <span class="operator">=</span> JUnitCore.runClasses(Testcase.class);</span><br><span class="line">        <span class="keyword">for</span>(Failure failure:result.getFailures())&#123;</span><br><span class="line">            System.out.println(failure.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(result.wasSuccessful());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证输出</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605145831105-fb200f.png" alt="image-20220605145831105"></p>
+<p>现在可以尝试在类的级别上使用@Ignore，可以保持Test Runner不变（将@Ignore注解放到类上）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Ignore;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertEquals;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Ignore</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Testcase</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;I is back&quot;</span>;</span><br><span class="line">    <span class="type">MessageUtil</span> <span class="variable">messageUtil</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MessageUtil</span>(message);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPrintMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside testPrintMessage()&quot;</span>);</span><br><span class="line">        message = <span class="string">&quot;Robert&quot;</span>;</span><br><span class="line">        assertEquals(message,messageUtil.printMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSalutationMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside testSalutationMessage()&quot;</span>);</span><br><span class="line">        message = <span class="string">&quot;Hi!&quot;</span> + <span class="string">&quot;i am back&quot;</span>;</span><br><span class="line">        assertEquals(message,messageUtil.salutationMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行Test runner 验证输出</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605150144513-748d63.png" alt="image-20220605150144513"></p>
+<p>没有测试用例被测试。</p>
+<h2 id="时间测试"><a href="#时间测试" class="headerlink" title="时间测试"></a>时间测试</h2><p>Junit提供了一个暂停的方便选项，如果测试用例花费时间超出指定毫秒数，Junit将会将他标记为失败。这需要timeout参数和@Test注释一起使用：@Test(timeout)</p>
+<h3 id="创建一个类-1"><a href="#创建一个类-1" class="headerlink" title="创建一个类"></a>创建一个类</h3><p>1.沿用已经创建的MessageUtil.java</p>
+<p>2.在<code>printMessage()</code>方法中添加一个while死循环</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//进行打印</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">printMessage</span><span class="params">()</span>&#123;</span><br><span class="line">    System.out.println(message);</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Testcase类"><a href="#Testcase类" class="headerlink" title="Testcase类"></a>Testcase类</h3><p>在<code>testPrintMessage()</code>测试用例添加1000ms的暂停时间</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test(timeout=1000)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPrintMessage</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Inside testPrintMessage()&quot;</span>);</span><br><span class="line">    message = <span class="string">&quot;Robert&quot;</span>;</span><br><span class="line">    assertEquals(message,messageUtil.printMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行TestRunner.java</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605151541158-3bbdee.png" alt="image-20220605151541158"></p>
+<p><code>testPrintMessage()</code> 测试用例将标记单元测试失败。</p>
+<h2 id="异常测试"><a href="#异常测试" class="headerlink" title="异常测试"></a>异常测试</h2><p>Junit用代码处理提供一个追踪异常的选项。你可以测试代码是否它抛出了想要得到的异常，这需要用到expected参数与@Test一起使用：@Test(expected)</p>
+<h3 id="创建类"><a href="#创建类" class="headerlink" title="创建类"></a>创建类</h3><p>我们仍然沿用<code>MessageUtil.java</code>(稍稍改动下)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">printMessage</span><span class="params">()</span>&#123;</span><br><span class="line">    System.out.println(message);</span><br><span class="line">    <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">1</span>/a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Test-Case类"><a href="#Test-Case类" class="headerlink" title="Test Case类"></a>Test Case类</h3><p>给 <code>testPrintMessage()</code> 测试用例添加需要的异常 <code>ArithmeticException</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test(expected = ArithmeticException.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPrintMessage</span><span class="params">()</span> &#123;</span><br><span class="line">System.out.println(<span class="string">&quot;Inside testPrintMessage()&quot;</span>);</span><br><span class="line">messageUtil.printMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行Test Runner</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605153208339-27c785.png" alt="image-20220605153208339"></p>
+<p>测试用例通过，说明我们得到了想要的异常</p>
+<h2 id="参数化测试"><a href="#参数化测试" class="headerlink" title="参数化测试"></a>参数化测试</h2><p>参数化测试允许开发人员使用不同的值反复运行同一个测试。</p>
+<p>遵循5个步骤来创建参数化测试（稍后）</p>
+<h3 id="创建一个类-2"><a href="#创建一个类-2" class="headerlink" title="创建一个类"></a>创建一个类</h3><p>创建一个叫做 PrimeNumberChecker.java 的 java 类来测试（检测一个数是否是质数）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrimeNumberCheker</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Boolean <span class="title function_">validate</span><span class="params">(<span class="keyword">final</span> Integer primeNumber)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;(primeNumber/<span class="number">2</span>);i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(primeNumber%i==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Parameterized-Test-Case-类"><a href="#创建Parameterized-Test-Case-类" class="headerlink" title="创建Parameterized Test Case 类"></a>创建Parameterized Test Case 类</h3><ol>
+<li><p>用<code>@RunWith(Parameterized.class)</code>来注释test类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith(Parameterized.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ParameterizedTestCase</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个由@Parameters注释的公共的静态方法，他返回一个对象的集合（数组）来作为测试数据集合。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Parameterized</span>.Parameters</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Collection <span class="title function_">primeNumbers</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> <span class="title class_">Object</span>[][] &#123;</span><br><span class="line">            &#123; <span class="number">2</span>, <span class="literal">true</span> &#125;,</span><br><span class="line">            &#123; <span class="number">6</span>, <span class="literal">false</span> &#125;,</span><br><span class="line">            &#123; <span class="number">19</span>, <span class="literal">true</span> &#125;,</span><br><span class="line">            &#123; <span class="number">22</span>, <span class="literal">false</span> &#125;,</span><br><span class="line">            &#123; <span class="number">23</span>, <span class="literal">true</span> &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个公共构造函数，他接受和一行测试工具相等同的东西</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ParameterizedTestCase</span><span class="params">(Integer inputNumber,Boolean expectecResult)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.inputNumber = inputNumber;</span><br><span class="line">    <span class="built_in">this</span>.expectedResult = expectecResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为每一列测试数据创建一个实例变量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> PrimeNumberCheker primeNumberChecker;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用实例变量作为测试数据的来源来创建你的测试用例</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPrimeNumberChecker</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Parameterized Number is : &quot;</span> + inputNumber);</span><br><span class="line">    assertEquals(expectedResult,</span><br><span class="line">            primeNumberChecker.validate(inputNumber));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>每一行数据都将在测试用例中被调用。</p>
+<p>验证输出</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220605163736065-8c4f8a.png" alt="image-20220605163736065"></p>
+<h3 id="全部正确"><a href="#全部正确" class="headerlink" title="全部正确"></a>全部正确</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="qq:860211327">Curry Jay</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://curry-jay.github.io/posts/31992.html">https://curry-jay.github.io/posts/31992.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://curry-jay.github.io" target="_blank">Curry的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%B6%E4%BB%96/">其他</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/56499.html" title="Maven操作"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/back/maven.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Maven操作</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/posts/3828.html" title="git操作"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/other/git.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">git操作</div></div><div class="info-2"><div class="info-item-1">Git学习版本控制工具版本控制（Revision...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/24403.html" title="个人博客搭建"><img class="cover" src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/hexo-ee93ff.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-18</div><div class="info-item-2">个人博客搭建</div></div><div class="info-2"><div class="info-item-1">前期准备Node.js 安装输入node -v和npm -v。如果正确安装，命令行将分别显示已安装的 Node.js 版本号和 npm（Node.js 的包管理工具）版本号。Git 安装在命令行中输入git --version，若显示 Git 的版本信息，则表明安装成功  创建git仓库新建一个仓库创建一个和你用户名相同的仓库，后面加.github.io后缀，必须要同名哦，不然后面会出现页面404的情况，点击create respository按钮创建。   生成SSH添加到GitHub创建SSHssh-keygen -t rsa -C &quot;860211327@qq.com&quot;(你的邮箱）将生成的内容绑定到git的SSH上面  验证： 输入命令（git）：ssh -T git@github.com 并且输入yes之后，行末尾会显示你的用户名（绑定成功邮箱会收到邮件提醒）接着在本地绑定与Github的用户名和邮箱（git）输入命令：git config --global user.name “注册时用户名”输入命令：git config --global...</div></div></div></a><a class="pagination-related" href="/posts/25733.html" title="github作为Typora图床搭建"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-10</div><div class="info-item-2">github作为Typora图床搭建</div></div><div class="info-2"><div class="info-item-1">GitHub仓库设置新建仓库 创建token然后创建Token，点击链接：https://github.com/settings/tokens 进入Token创建页面： 然后点击Generate new...</div></div></div></a><a class="pagination-related" href="/posts/3828.html" title="git操作"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/other/git.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-06</div><div class="info-item-2">git操作</div></div><div class="info-2"><div class="info-item-1">Git学习版本控制工具版本控制（Revision...</div></div></div></a><a class="pagination-related" href="/posts/29704.html" title="hexo相册构建"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-11</div><div class="info-item-2">hexo相册构建</div></div><div class="info-2"><div class="info-item-1">目的： 为博客添加相册功能 通过GitHub来实现相册功能  二、方案在github上新建一个仓库，主要用于存储图片，可以通过url访问到，也方便管理将要放到相册的图片处理成json格式的数据，然后进行访问，这里json的格式需要配合要使用的样式，所以需要处理成特定格式的json数据，下面会给出修改代码（大佬写好的）使用py脚本压缩图片生成略缩图 </div></div></div></a><a class="pagination-related" href="/posts/41591.html" title="项目部署学习"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-10</div><div class="info-item-2">项目部署学习</div></div><div class="info-2"><div class="info-item-1">云端环境部署基于Centos7系统环境进行云服务器的部署 准备好MySQL和JDK 的安装包注意安装包必须是linx系统上的安装包 安装MySQL首先卸载Centos7自带的mariadb# 查找rpm -qa|grep mariadb# 如果显示 mariabdb版本，那么进行删除，如果不显示，那么不需要卸载# 卸载rpm -e &#123;mariadb版本&#125; --nodeps  解压mysql# 创建mysql安装包存放点mkdir /usr/server/mysql# 解压tar xvf &#123;mysql.tar 压缩包&#125;  执行安装# 切换到安装目录cd /usr/server/mysql/    #使用yum安装mysql所必须的一些软件yum -y install libaioyum -y install libncurses*yum -y install perl perl-devel# 安装    用ls属性查询mysql解压完成的包里面对应的版本号rpm -ivh...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Curry Jay</div><div class="author-info-description">xjtu软件工程在读研究生</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Curry-jay"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是我的博客，欢迎光临我的博客，刚开始搭建内容</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Junit%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Junit概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Junit%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">Junit定义：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8Junit"><span class="toc-number">3.</span> <span class="toc-text">为什么要使用Junit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">特点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse"><span class="toc-number">5.1.</span> <span class="toc-text">eclipse:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA%E9%85%8D%E7%BD%AE"><span class="toc-number">5.2.</span> <span class="toc-text">IDEA配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven%E9%85%8D%E7%BD%AE"><span class="toc-number">5.3.</span> <span class="toc-text">Maven配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Junit%E5%85%A5%E9%97%A8"><span class="toc-number">6.</span> <span class="toc-text">Junit入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-number">7.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%B5%8B%E8%AF%95"><span class="toc-number">8.</span> <span class="toc-text">忽略测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%B1%BB"><span class="toc-number">8.1.</span> <span class="toc-text">创建一个类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BATest-Case%E7%B1%BB"><span class="toc-number">8.2.</span> <span class="toc-text">创建Test Case类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BATest-Runner"><span class="toc-number">8.3.</span> <span class="toc-text">创建Test Runner</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%B5%8B%E8%AF%95"><span class="toc-number">9.</span> <span class="toc-text">时间测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%B1%BB-1"><span class="toc-number">9.1.</span> <span class="toc-text">创建一个类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Testcase%E7%B1%BB"><span class="toc-number">9.2.</span> <span class="toc-text">Testcase类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95"><span class="toc-number">10.</span> <span class="toc-text">异常测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B1%BB"><span class="toc-number">10.1.</span> <span class="toc-text">创建类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-Case%E7%B1%BB"><span class="toc-number">10.2.</span> <span class="toc-text">Test Case类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-number">11.</span> <span class="toc-text">参数化测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%B1%BB-2"><span class="toc-number">11.1.</span> <span class="toc-text">创建一个类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAParameterized-Test-Case-%E7%B1%BB"><span class="toc-number">11.2.</span> <span class="toc-text">创建Parameterized Test Case 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E6%AD%A3%E7%A1%AE"><span class="toc-number">11.3.</span> <span class="toc-text">全部正确</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/LangChain/4j.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/LangChain4j/LangChain4j实战教程"/></a><div class="content"><a class="title" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程">back/LangChain4j/LangChain4j实战教程</a><time datetime="2026-01-05T13:54:44.000Z" title="发表于 2026-01-05 21:54:44">2026-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3876.html" title="Consul服务中心"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/consul.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Consul服务中心"/></a><div class="content"><a class="title" href="/posts/3876.html" title="Consul服务中心">Consul服务中心</a><time datetime="2025-09-08T14:54:09.000Z" title="发表于 2025-09-08 22:54:09">2025-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/47860.html" title="back/Linux/Docker复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Linux/docker.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/Linux/Docker复习"/></a><div class="content"><a class="title" href="/posts/47860.html" title="back/Linux/Docker复习">back/Linux/Docker复习</a><time datetime="2025-09-02T12:19:40.000Z" title="发表于 2025-09-02 20:19:40">2025-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55889.html" title="mybatisPlus复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/mybatisPlus.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mybatisPlus复习"/></a><div class="content"><a class="title" href="/posts/55889.html" title="mybatisPlus复习">mybatisPlus复习</a><time datetime="2025-07-26T09:26:46.000Z" title="发表于 2025-07-26 17:26:46">2025-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/58965.html" title="Redis原理和实战"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/Redis-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis原理和实战"/></a><div class="content"><a class="title" href="/posts/58965.html" title="Redis原理和实战">Redis原理和实战</a><time datetime="2025-07-13T13:05:12.000Z" title="发表于 2025-07-13 21:05:12">2025-07-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/top/other/Junit.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Curry Jay</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎光临我的小屋!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script src="/config/js/catagory.js?1"></script><script src="https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js"></script><script type="text/javascript" src="/config/js/rightmenu.js?1"></script><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/生活/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 生活趣闻 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/后端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 后端学习 (19)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/其他/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🧑‍💻 其他内容 (6)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/前端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🕵️ 前端学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/比赛/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">⛹️‍♂️ 比赛内容 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/学校学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🏫 学校学习记录 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/软件使用/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥️ 软件使用技巧 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://curry-jay.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #49B1F5}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top_first.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-17</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">欢迎来到我的小屋</a><div class="blog-slider__text">由于笔记放在实验室电脑和自己电脑上查询不方便，所以想做一个博客将这些东西整合起来！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top/Live/toDoList.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-01-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">待办清单</a><div class="blog-slider__text">统计一下待办清单!</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>

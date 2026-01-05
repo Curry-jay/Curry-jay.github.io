@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>git操作 | Curry的小屋</title><meta name="author" content="Curry Jay"><meta name="copyright" content="Curry Jay"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="git操作讲解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git操作">
+<meta property="og:url" content="https://curry-jay.github.io/posts/3828.html">
+<meta property="og:site_name" content="Curry的小屋">
+<meta property="og:description" content="git操作讲解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://curry-jay.github.io/image/top/other/git.jpg">
+<meta property="article:published_time" content="2025-01-06T07:10:21.000Z">
+<meta property="article:modified_time" content="2025-06-27T10:20:49.841Z">
+<meta property="article:author" content="Curry Jay">
+<meta property="article:tag" content="其他">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://curry-jay.github.io/image/top/other/git.jpg"><link rel="shortcut icon" href="/image/favicon.png"><link rel="canonical" href="https://curry-jay.github.io/posts/3828.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Curry Jay","link":"链接: ","source":"来源: Curry的小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'git操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/config/css/custom_homeCenter.css?v1"><link rel="stylesheet" href="/config/css/catagory.css?v1"><link rel="stylesheet" href="/config/css/tag.css?v1"><link rel="stylesheet" href="/config/css/rightmenu.css?v1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/theme-chalk/index.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="fas fa-angle-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="fas fa-angle-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="fas fa-sync-alt"></i></div><div class="rightMenu-item" id="menu-darkmode"><i class="fas fa-adjust"></i></div><a class="rightMenu-item" href="/" id="menu-home"><i class="fas fa-home"></i></a></div><div class="rightMenu-group rightMenu-line rightMenuPost"><div class="rightMenu-item" id="menu-reading"><i class="fas fa-book"></i><span>阅读模式</span></div><div class="rightMenu-item" id="menu-postlink"><i class="fas fa-link"></i><span>复制本文地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="fas fa-copy"></i><span>复制内容</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="fas fa-paste"></i><span>粘贴内容</span></div><div class="rightMenu-item" id="menu-search"><i class="fas fa-search"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="fab fa-internet-explorer"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="fas fa-external-link-alt"></i><span>新建窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="fas fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="fas fa-image"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="fas fa-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-copylinkimg"><i class="fas fa-link"></i><span>复制图片链接</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-translate"><i class="fas fa-language"></i><span>繁简转换</span></a><div class="rightMenu-item" id="menu-asidehide"><i class="fas fa-bars"></i><span>边栏控制</span></div></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/tags/" id="menu-tags"><i class="fas fa-tags"></i><span>文章标签</span></a><a class="rightMenu-item" href="/posts/48081.html" id="menu-waitToDo"><i class="fas fa-th-list"></i><span>待办清单</span></a><a class="rightMenu-item" href="/categories/" id="menu-folder-open"><i class="fas fa-folder-open"></i><span>博客分类</span></a><a class="rightMenu-item" href="/posts/18872.html" id="menu-copyright"><i class="fas fa-copyright"></i><span>初衷申明</span></a></div></div><div id="rightMenu-mask"></div><div id="web_bg" style="background-color: #c0c3c5;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/top/other/git.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/image/loading.gif" data-lazy-src="/image/curry.jpg" alt="Logo"><span class="site-name">Curry的小屋</span></a><a class="nav-page-title" href="/"><span class="site-name">git操作</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div><div id="nav-right"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></div></nav><div id="post-info"><h1 class="post-title">git操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-06T07:10:21.000Z" title="发表于 2025-01-06 15:10:21">2025-01-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-27T10:20:49.841Z" title="更新于 2025-06-27 18:20:49">2025-06-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Git学习"><a href="#Git学习" class="headerlink" title="Git学习"></a>Git学习</h1><h2 id="版本控制工具"><a href="#版本控制工具" class="headerlink" title="版本控制工具"></a>版本控制工具</h2><p>版本控制（Revision control）是一种在开发的过程中用于管理我们对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。简单的来说就是用来管理多人协同开发项目的技术。</p>
+<h3 id="本地版本控制"><a href="#本地版本控制" class="headerlink" title="本地版本控制"></a>本地版本控制</h3><p>对于本地来记录文件的每次更新，例如<code>wps</code>进行版本记录，记录每次本地的修改时间</p>
+<h3 id="集中版本控制"><a href="#集中版本控制" class="headerlink" title="集中版本控制"></a>集中版本控制</h3><p>文件放在服务器（统一的地方），协同开发者从服务器上同步更新或上传自己的修改，不过容易出现单点故障问题，服务器崩溃，所有代码都没了，每个人只有自己的代码，只有去服务器才能看历史记录，没有完整的代码</p>
+<h3 id="分布式版本控制系统"><a href="#分布式版本控制系统" class="headerlink" title="分布式版本控制系统"></a>分布式版本控制系统</h3><p>每个人都有全部代码，可以离线在本地提交，等联网后可以push上去</p>
+<h3 id="Git和SVN区别"><a href="#Git和SVN区别" class="headerlink" title="Git和SVN区别"></a>Git和SVN区别</h3><p>SVN是集中式版本控制系统，版本库是集中放在中央服务器的，而工作的时候，用的都是自己的电脑，所以首先要从中央服务器得到最新的版本，然后工作，完成工作后，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，对网络带宽要求较高。</p>
+<p>Git是分布式版本控制系统，没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网了，因为版本都在自己电脑上。</p>
+<h2 id="基本linx命令"><a href="#基本linx命令" class="headerlink" title="基本linx命令"></a>基本<code>linx</code>命令</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">cd : 改变目录。</span><br><span class="line"></span><br><span class="line">cd .. 回退到上一个目录，直接cd进入默认目录 注意中间有个空格</span><br><span class="line"></span><br><span class="line">pwd : 显示当前所在的目录路径。</span><br><span class="line">    </span><br><span class="line">clear 清屏。</span><br><span class="line"></span><br><span class="line">ls:  都是列出当前目录中的所有文件，只不过ll(两个ll)列出的内容更为详细。</span><br><span class="line"></span><br><span class="line">touch : 新建一个文件 如 touch index.js 就会在当前目录下新建一个index.js文件。</span><br><span class="line"></span><br><span class="line">rm:  删除一个文件, rm index.js 就会把index.js文件删除。</span><br><span class="line"></span><br><span class="line">mkdir:  新建一个目录,就是新建一个文件夹。</span><br><span class="line"></span><br><span class="line">rm -r :  删除一个文件夹, rm -r src 删除src目录</span><br><span class="line"></span><br><span class="line">提示：： rm -rf / 切勿在Linux中尝试！删除电脑中全部文件！</span><br><span class="line">    </span><br><span class="line">mv 移动文件, </span><br><span class="line">eg: mv index.html src      </span><br><span class="line">    其中index.html 是我们要移动的文件, src 是目标文件夹,当然, 这样写,必须保证文件和目标文件夹在同一目录下。</span><br><span class="line"></span><br><span class="line">reset 重新初始化终端/清屏。</span><br><span class="line"></span><br><span class="line">history 查看命令历史。</span><br><span class="line"></span><br><span class="line">help 帮助。</span><br><span class="line"></span><br><span class="line">exit 退出。</span><br><span class="line"></span><br><span class="line">#表示注释</span><br></pre></td></tr></table></figure>
+
+<h2 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">查看配置文件</span><br><span class="line">git config -l </span><br><span class="line"></span><br><span class="line">查看系统配置文件</span><br><span class="line">git config --system --list</span><br><span class="line"></span><br><span class="line">查看用户自己配置文件</span><br><span class="line">git config --global  --list</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git基本理论"><a href="#Git基本理论" class="headerlink" title="Git基本理论"></a>Git基本理论</h2><p>git一般有四个区域，工作目录，暂存区，资源库，远程库</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20221111182239587-c6c93e.png" alt="image-20221111182239587"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Workspace：工作区，就是你平时存放项目代码的地方</span><br><span class="line"></span><br><span class="line">Index / Stage：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息(一般显示不出来)</span><br><span class="line"></span><br><span class="line">Repository：仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</span><br><span class="line"></span><br><span class="line">Remote：远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">提交流程：</span><br><span class="line">本地仓库 git add .    //将所有文件提交到暂存区</span><br><span class="line">暂存区  git commit    //文件提交到本地仓库</span><br><span class="line">本地仓库  git push   //本地仓库提交到远程仓库</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="git命令"><a href="#git命令" class="headerlink" title="git命令"></a>git命令</h2><h3 id="git初始化——本地仓库搭建"><a href="#git初始化——本地仓库搭建" class="headerlink" title="git初始化——本地仓库搭建"></a>git初始化——本地仓库搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">创建全新的仓库</span><br><span class="line">git init   // git 文件初始化,初始化为git，初始化本地仓库</span><br><span class="line"></span><br><span class="line">克隆远程目录，由于是将远程服务器上的仓库完全镜像一份至本地！</span><br><span class="line">git clone &#123;url&#125;  //git 克隆来进行初始化</span><br></pre></td></tr></table></figure>
+
+<h3 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Untracked: 未跟踪, 此文件在文件夹中, 但并没有加入到git库, 不参与版本控制. 通过git add 状态加入到暂存区中变为Staged.</span><br><span class="line"></span><br><span class="line">Unmodify: 文件已经入库, 未修改, 即版本库中的文件快照内容与文件夹中完全一致. 这种类型的文件有两种去处, 如果它被修改, 而变为Modified. 如果使用git rm移出版本库, 则成为Untracked文件</span><br><span class="line"></span><br><span class="line">Modified: 文件已修改, 仅仅是修改, 并没有进行其他的操作. 这个文件也有两个去处, 通过git add可进入暂存staged状态, 使用git checkout 则丢弃修改过, 返回到unmodify状态, 这里面！！这个git checkout即从库中取出文件, 覆盖当前修改 !</span><br><span class="line"></span><br><span class="line">Staged: 暂存状态. 执行git commit则将修改同步到本地库中, 这时库中的文件和本地文件又变为一致, 文件为Unmodify状态. 执行git reset HEAD filename取消暂存, 文件状态为Modified（回滚）</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">#查看指定文件状态</span><br><span class="line">git status [filename]</span><br><span class="line"></span><br><span class="line">#查看所有文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"> git add .                  添加所有文件到暂存区</span><br><span class="line"> git commit -m <span class="string">&quot;消息内容&quot;</span>    提交暂存区中的内容到本地仓库 -m 提交信息</span><br><span class="line"> git log   提交记录</span><br><span class="line">    </span><br><span class="line"> 回滚</span><br><span class="line">git reset --hard 《commitID》  其中commitID可以通过git log查看</span><br><span class="line">    会直接重置为这个时候的版本，</span><br><span class="line">    </span><br><span class="line">git reflog    显示当前分支的最近几次提交    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"># 列出所有本地分支</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line"># 列出所有远程分支</span><br><span class="line">$ git branch -r</span><br><span class="line"></span><br><span class="line"># 列出所有本地分支和远程分支</span><br><span class="line">$ git branch -a</span><br><span class="line"></span><br><span class="line"># 新建一个分支，但依然停留在当前分支</span><br><span class="line">$ git branch [branch-name]</span><br><span class="line"></span><br><span class="line"># 新建一个分支，并切换到该分支</span><br><span class="line">$ git checkout -b [branch]</span><br><span class="line">    </span><br><span class="line"># 删除分支</span><br><span class="line">$ git branch -d [branch-name]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 切换到指定分支，并更新工作区</span><br><span class="line">$ git checkout [branch-name]</span><br><span class="line"></span><br><span class="line"># 切换到上一个分支</span><br><span class="line">$ git checkout -</span><br><span class="line">    </span><br><span class="line"># 合并指定分支到当前分支</span><br><span class="line">$ git merge [branch]</span><br><span class="line">    </span><br><span class="line">下载远程仓库的所有变动</span><br><span class="line">$ git fetch [remote]</span><br><span class="line"></span><br><span class="line"># 显示所有远程仓库</span><br><span class="line">$ git remote -v</span><br><span class="line"></span><br><span class="line">   # 增加一个新的远程仓库，并命名</span><br><span class="line">$ git remote add [shortname] [url]</span><br><span class="line">    </span><br><span class="line"># 显示某个远程仓库的信息</span><br><span class="line">$ git remote show [remote]</span><br><span class="line"></span><br><span class="line"># 增加一个新的远程仓库，并命名</span><br><span class="line">$ git remote add [shortname] [url]</span><br><span class="line"></span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">$ git pull [remote] [branch]</span><br><span class="line"></span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">$ git push [remote] [branch]</span><br><span class="line"></span><br><span class="line"># 强行推送当前分支到远程仓库，即使有冲突</span><br><span class="line">$ git push [remote] --force</span><br><span class="line"></span><br><span class="line"># 推送所有分支到远程仓库</span><br><span class="line">$ git push [remote] --all</span><br></pre></td></tr></table></figure>
+
+<h3 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h3><p>在主目录下建立”<code>.gitignore</code>“文件，此文件有如下规则：</p>
+<ol>
+<li><p>忽略文件中的空行或以井号（#）开始的行将会被忽略。</p>
+</li>
+<li><p>可以使用Linux通配符。例如：星号（*）代表任意多个字符，问号（？）代表一个字符，方括号（[<code>abc</code>]）代表可选字符范围，大括号（{<code>string1</code>,<code>string2</code>,…}）代表可选的字符串等。</p>
+</li>
+<li><p>如果名称的最前面有一个感叹号（!），表示例外规则，将不被忽略。</p>
+</li>
+<li><p>如果名称的最前面是一个路径分隔符（&#x2F;），表示要忽略的文件在此目录下，而子目录中的文件不忽略。</p>
+</li>
+<li><p>如果名称的最后面是一个路径分隔符（&#x2F;），表示要忽略的是此目录下该名称的子目录，而非文件（默认文件或目录都忽略）。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#为注释</span><br><span class="line">*.txt        #忽略所有 .txt结尾的文件,这样的话上传就不会被选中！</span><br><span class="line">!lib.txt     #但lib.txt除外</span><br><span class="line">/temp        #仅忽略项目根目录下的TODO文件,不包括其它目录temp</span><br><span class="line">build/       #忽略build/目录下的所有文件</span><br><span class="line">doc/*.txt    #会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>更多git细节去<code>gitee</code>下方的链接去进行操作 ————OVER</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20221111194849215-931dc9.png" alt="image-20221111194849215"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="qq:860211327">Curry Jay</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://curry-jay.github.io/posts/3828.html">https://curry-jay.github.io/posts/3828.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://curry-jay.github.io" target="_blank">Curry的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%B6%E4%BB%96/">其他</a><a class="post-meta__tags" href="/tags/git/">git</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/31992.html" title="Junit操作"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/other/Junit.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Junit操作</div></div><div class="info-2"><div class="info-item-1">Junit概述Junit定义：官方地址：Junit4——https://junit.org/junit4/  ​				Junit5——https://junit.org/junit5/ 官方文档： ​	JUnit is a simple framework to write repeatable tests. It is an instance of the xUnit architecture for unit testing frameworks. JUnit是一个编写可重复测试的简单框架。 它是用于单元测试框架的xUnit架构的一个实例。 xUnit...</div></div></div></a><a class="pagination-related" href="/posts/39410.html" title="刷题记录"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/race/LeetCode/LeetCode.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">刷题记录</div></div><div class="info-2"><div class="info-item-1">优先队列插入的元素有顺序，里面的元素有优先级，对于元素的排序即可初级实现方法：1.数组实现，无序数组进行实现， 对于元素进来，让元素直接插入到数组中，当需要出战的时候，对数组进行遍历，找到数组中最大的元素，将它和数组最后一个元素交换，之后将最后一个数组元素赋值为null2.数组实现，有序，对存放进数组的元素，按照一个大小顺序进行排序插入，即插入一个元素放在末尾，然后用交换的方式交换到它合适的位置即可。3用链表表示,插入就简单的插入，但是要进行出队列的时候，需要对整个链表进行遍历，然后找到最大的，进行出链表。    堆实现可以使得复杂度在o(logn)  -&gt;以2为底，因为可以显然得出对于一棵树的高度，是二的幂次才会加一对于一个含有N个元素的基于堆的优先队列，插入元素操作需要lgN+1次比较，删除元素操作需要不超过2lgN次比较    对于堆实现优先队列来说，可以将堆按照数组的方式进行存储，可以很容易证得 对于k节点的左节点是2k，右节点是2k+1,所以需要以这种方式来进行实现。        实现：   ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/31992.html" title="Junit操作"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/other/Junit.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-06</div><div class="info-item-2">Junit操作</div></div><div class="info-2"><div class="info-item-1">Junit概述Junit定义：官方地址：Junit4——https://junit.org/junit4/  ​				Junit5——https://junit.org/junit5/ 官方文档： ​	JUnit is a simple framework to write repeatable tests. It is an instance of the xUnit architecture for unit testing frameworks. JUnit是一个编写可重复测试的简单框架。 它是用于单元测试框架的xUnit架构的一个实例。 xUnit...</div></div></div></a><a class="pagination-related" href="/posts/24403.html" title="个人博客搭建"><img class="cover" src= "/image/loading.gif" data-lazy-src="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/hexo-ee93ff.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-18</div><div class="info-item-2">个人博客搭建</div></div><div class="info-2"><div class="info-item-1">前期准备Node.js 安装输入node -v和npm -v。如果正确安装，命令行将分别显示已安装的 Node.js 版本号和 npm（Node.js 的包管理工具）版本号。Git 安装在命令行中输入git --version，若显示 Git 的版本信息，则表明安装成功  创建git仓库新建一个仓库创建一个和你用户名相同的仓库，后面加.github.io后缀，必须要同名哦，不然后面会出现页面404的情况，点击create respository按钮创建。   生成SSH添加到GitHub创建SSHssh-keygen -t rsa -C &quot;860211327@qq.com&quot;(你的邮箱）将生成的内容绑定到git的SSH上面  验证： 输入命令（git）：ssh -T git@github.com 并且输入yes之后，行末尾会显示你的用户名（绑定成功邮箱会收到邮件提醒）接着在本地绑定与Github的用户名和邮箱（git）输入命令：git config --global user.name “注册时用户名”输入命令：git config --global...</div></div></div></a><a class="pagination-related" href="/posts/25733.html" title="github作为Typora图床搭建"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-10</div><div class="info-item-2">github作为Typora图床搭建</div></div><div class="info-2"><div class="info-item-1">GitHub仓库设置新建仓库 创建token然后创建Token，点击链接：https://github.com/settings/tokens 进入Token创建页面： 然后点击Generate new...</div></div></div></a><a class="pagination-related" href="/posts/29704.html" title="hexo相册构建"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-11</div><div class="info-item-2">hexo相册构建</div></div><div class="info-2"><div class="info-item-1">目的： 为博客添加相册功能 通过GitHub来实现相册功能  二、方案在github上新建一个仓库，主要用于存储图片，可以通过url访问到，也方便管理将要放到相册的图片处理成json格式的数据，然后进行访问，这里json的格式需要配合要使用的样式，所以需要处理成特定格式的json数据，下面会给出修改代码（大佬写好的）使用py脚本压缩图片生成略缩图 </div></div></div></a><a class="pagination-related" href="/posts/41591.html" title="项目部署学习"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-10</div><div class="info-item-2">项目部署学习</div></div><div class="info-2"><div class="info-item-1">云端环境部署基于Centos7系统环境进行云服务器的部署 准备好MySQL和JDK 的安装包注意安装包必须是linx系统上的安装包 安装MySQL首先卸载Centos7自带的mariadb# 查找rpm -qa|grep mariadb# 如果显示 mariabdb版本，那么进行删除，如果不显示，那么不需要卸载# 卸载rpm -e &#123;mariadb版本&#125; --nodeps  解压mysql# 创建mysql安装包存放点mkdir /usr/server/mysql# 解压tar xvf &#123;mysql.tar 压缩包&#125;  执行安装# 切换到安装目录cd /usr/server/mysql/    #使用yum安装mysql所必须的一些软件yum -y install libaioyum -y install libncurses*yum -y install perl perl-devel# 安装    用ls属性查询mysql解压完成的包里面对应的版本号rpm -ivh...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Curry Jay</div><div class="author-info-description">xjtu软件工程在读研究生</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Curry-jay"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是我的博客，欢迎光临我的博客，刚开始搭建内容</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">Git学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.</span> <span class="toc-text">版本控制工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">本地版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E4%B8%AD%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">集中版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">分布式版本控制系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%92%8CSVN%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.4.</span> <span class="toc-text">Git和SVN区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AClinx%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">基本linx命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">git配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">Git基本理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">git命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%88%9D%E5%A7%8B%E5%8C%96%E2%80%94%E2%80%94%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA"><span class="toc-number">1.5.1.</span> <span class="toc-text">git初始化——本地仓库搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.2.</span> <span class="toc-text">git文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="toc-number">1.5.3.</span> <span class="toc-text">查看文件状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.4.</span> <span class="toc-text">忽略文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">2.</span> <span class="toc-text">注意</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/LangChain/4j.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/LangChain4j/LangChain4j实战教程"/></a><div class="content"><a class="title" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程">back/LangChain4j/LangChain4j实战教程</a><time datetime="2026-01-05T13:54:44.000Z" title="发表于 2026-01-05 21:54:44">2026-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3876.html" title="Consul服务中心"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/consul.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Consul服务中心"/></a><div class="content"><a class="title" href="/posts/3876.html" title="Consul服务中心">Consul服务中心</a><time datetime="2025-09-08T14:54:09.000Z" title="发表于 2025-09-08 22:54:09">2025-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/47860.html" title="back/Linux/Docker复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Linux/docker.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/Linux/Docker复习"/></a><div class="content"><a class="title" href="/posts/47860.html" title="back/Linux/Docker复习">back/Linux/Docker复习</a><time datetime="2025-09-02T12:19:40.000Z" title="发表于 2025-09-02 20:19:40">2025-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55889.html" title="mybatisPlus复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/mybatisPlus.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mybatisPlus复习"/></a><div class="content"><a class="title" href="/posts/55889.html" title="mybatisPlus复习">mybatisPlus复习</a><time datetime="2025-07-26T09:26:46.000Z" title="发表于 2025-07-26 17:26:46">2025-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/58965.html" title="Redis原理和实战"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/Redis-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis原理和实战"/></a><div class="content"><a class="title" href="/posts/58965.html" title="Redis原理和实战">Redis原理和实战</a><time datetime="2025-07-13T13:05:12.000Z" title="发表于 2025-07-13 21:05:12">2025-07-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/top/other/git.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Curry Jay</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎光临我的小屋!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script src="/config/js/catagory.js?1"></script><script src="https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js"></script><script type="text/javascript" src="/config/js/rightmenu.js?1"></script><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/生活/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 生活趣闻 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/后端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 后端学习 (19)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/其他/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🧑‍💻 其他内容 (6)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/前端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🕵️ 前端学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/比赛/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">⛹️‍♂️ 比赛内容 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/学校学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🏫 学校学习记录 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/软件使用/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥️ 软件使用技巧 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://curry-jay.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #49B1F5}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top_first.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-17</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">欢迎来到我的小屋</a><div class="blog-slider__text">由于笔记放在实验室电脑和自己电脑上查询不方便，所以想做一个博客将这些东西整合起来！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top/Live/toDoList.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-01-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">待办清单</a><div class="blog-slider__text">统计一下待办清单!</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>

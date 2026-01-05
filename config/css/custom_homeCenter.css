@@ -1,0 +1,34 @@
+/* һ���˵����� */
+#nav .menus_items {
+    position: absolute !important;
+    width: fit-content !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+/* ��������ɫ */
+#page-header.nav-fixed #nav {
+    background: linear-gradient(60deg, #f1c6d4 0, #c8f1ff 93%);
+    opacity: 0.95;
+    backdrop-filter: var(--backdrop-filter);
+  }
+  [data-theme="dark"] #page-header.nav-fixed #nav {
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+
+/* ���������ҹģʽ���� */
+/* С��������������ҹģʽ���� */
+/* һ��״̬ */
+[data-theme="dark"] .magnet_link_context {
+  background: #1e1e1e;
+  color: antiquewhite;
+  border-radius: 8px;
+}
+/* �������״̬ */
+[data-theme="dark"] .magnet_link_context:hover {
+  background: rgb(54,185,176);
+  color: #f2f2f2;
+  border-radius: 8px;
+}
+/* ��ҳ�������end */
+
+  

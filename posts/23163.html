@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>latex使用 | Curry的小屋</title><meta name="author" content="Curry Jay"><meta name="copyright" content="Curry Jay"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="latex使用讲解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="latex使用">
+<meta property="og:url" content="https://curry-jay.github.io/posts/23163.html">
+<meta property="og:site_name" content="Curry的小屋">
+<meta property="og:description" content="latex使用讲解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://curry-jay.github.io/image/top/software/latex.jpg">
+<meta property="article:published_time" content="2025-01-05T15:20:31.000Z">
+<meta property="article:modified_time" content="2025-06-27T10:20:49.842Z">
+<meta property="article:author" content="Curry Jay">
+<meta property="article:tag" content="软件使用技巧">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://curry-jay.github.io/image/top/software/latex.jpg"><link rel="shortcut icon" href="/image/favicon.png"><link rel="canonical" href="https://curry-jay.github.io/posts/23163.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Curry Jay","link":"链接: ","source":"来源: Curry的小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'latex使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/config/css/custom_homeCenter.css?v1"><link rel="stylesheet" href="/config/css/catagory.css?v1"><link rel="stylesheet" href="/config/css/tag.css?v1"><link rel="stylesheet" href="/config/css/rightmenu.css?v1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/theme-chalk/index.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="fas fa-angle-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="fas fa-angle-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="fas fa-sync-alt"></i></div><div class="rightMenu-item" id="menu-darkmode"><i class="fas fa-adjust"></i></div><a class="rightMenu-item" href="/" id="menu-home"><i class="fas fa-home"></i></a></div><div class="rightMenu-group rightMenu-line rightMenuPost"><div class="rightMenu-item" id="menu-reading"><i class="fas fa-book"></i><span>阅读模式</span></div><div class="rightMenu-item" id="menu-postlink"><i class="fas fa-link"></i><span>复制本文地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="fas fa-copy"></i><span>复制内容</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="fas fa-paste"></i><span>粘贴内容</span></div><div class="rightMenu-item" id="menu-search"><i class="fas fa-search"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="fab fa-internet-explorer"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="fas fa-external-link-alt"></i><span>新建窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="fas fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="fas fa-image"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="fas fa-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-copylinkimg"><i class="fas fa-link"></i><span>复制图片链接</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-translate"><i class="fas fa-language"></i><span>繁简转换</span></a><div class="rightMenu-item" id="menu-asidehide"><i class="fas fa-bars"></i><span>边栏控制</span></div></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/tags/" id="menu-tags"><i class="fas fa-tags"></i><span>文章标签</span></a><a class="rightMenu-item" href="/posts/48081.html" id="menu-waitToDo"><i class="fas fa-th-list"></i><span>待办清单</span></a><a class="rightMenu-item" href="/categories/" id="menu-folder-open"><i class="fas fa-folder-open"></i><span>博客分类</span></a><a class="rightMenu-item" href="/posts/18872.html" id="menu-copyright"><i class="fas fa-copyright"></i><span>初衷申明</span></a></div></div><div id="rightMenu-mask"></div><div id="web_bg" style="background-color: #c0c3c5;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/top/software/latex.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/image/loading.gif" data-lazy-src="/image/curry.jpg" alt="Logo"><span class="site-name">Curry的小屋</span></a><a class="nav-page-title" href="/"><span class="site-name">latex使用</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div><div id="nav-right"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></div></nav><div id="post-info"><h1 class="post-title">latex使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-05T15:20:31.000Z" title="发表于 2025-01-05 23:20:31">2025-01-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-27T10:20:49.842Z" title="更新于 2025-06-27 18:20:49">2025-06-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="导言区"><a href="#导言区" class="headerlink" title="导言区"></a>导言区</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809135121833-d922af.png" alt="image-20220809135121833"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809135154892-3e54c2.png" alt="image-20220809135154892"></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;   中文包导入</span><br><span class="line"><span class="keyword">\title</span>&#123;title&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;names&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;2022.8.9&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="基本结构——在begin中添加"><a href="#基本结构——在begin中添加" class="headerlink" title="基本结构——在begin中添加"></a>基本结构——在begin中添加</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809135316708-ed69ba.png" alt="image-20220809135316708"></p>
+<p>对于一个文件只有一个begin和end</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\maketitle</span>	 标题显示 </span><br><span class="line"><span class="keyword">\tableofcontents</span>   目录生成</span><br><span class="line"><span class="keyword">\newpage</span>	新页</span><br><span class="line"><span class="keyword">\par</span>	新段落</span><br></pre></td></tr></table></figure>
+
+<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\underline</span>&#123;&#125; 为其中的内容添加下划线</span><br><span class="line"><span class="keyword">\emph</span>&#123;&#125; 文字变成斜体表示强调</span><br></pre></td></tr></table></figure>
+
+<h2 id="分页与断行"><a href="#分页与断行" class="headerlink" title="分页与断行"></a>分页与断行</h2><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">~ 用来表示一个不断行的空格，通常使用在英文人名等</span><br><span class="line"><span class="keyword">\\</span>   or  <span class="keyword">\newline</span>    这两个命令都可以用来表示断行，开辟一个新行，顶格写，新段落会空出来两个字符</span><br><span class="line"><span class="keyword">\par</span>  开辟一个新段落</span><br><span class="line"><span class="keyword">\newpage</span>   or  <span class="keyword">\claerpage</span>  新页</span><br><span class="line">若双栏排版时候，<span class="keyword">\newpage</span>只起到另起一栏的作用</span><br></pre></td></tr></table></figure>
+
+<h2 id="分小节和章节"><a href="#分小节和章节" class="headerlink" title="分小节和章节"></a>分小节和章节</h2><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809150717573-29ed16.png" alt="image-20220809150717573"></p>
+<h2 id="对于标题"><a href="#对于标题" class="headerlink" title="对于标题"></a>对于标题</h2><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809150857153-83087f.png" alt="image-20220809150857153"></p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">enumerate   有序列表</span><br><span class="line"><span class="keyword">\begin</span>&#123;enumerate&#125;</span><br><span class="line"> <span class="keyword">\item</span> </span><br><span class="line"> <span class="keyword">\item</span></span><br><span class="line"><span class="keyword">\end</span>&#123;enumerate&#125;</span><br><span class="line"></span><br><span class="line">itemize   无序列表</span><br><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line"> <span class="keyword">\item</span> </span><br><span class="line"> <span class="keyword">\item</span></span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line">列表项目展示：</span><br><span class="line"> <span class="keyword">\item</span> </span><br><span class="line"> <span class="keyword">\item</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;verbatim&#125;<span class="string"></span></span><br><span class="line"><span class="string">	代码块 </span></span><br><span class="line"><span class="string"></span><span class="keyword">\end</span>&#123;verbatim&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片放置"><a href="#图片放置" class="headerlink" title="图片放置"></a>图片放置</h2><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809165059018-abec7d.png" alt="image-20220809165059018"></p>
+<p>其中【h】放置最多</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[h]</span><br><span class="line">	<span class="keyword">\centering</span>  表格居中</span><br><span class="line">	<span class="keyword">\caption</span>&#123;table&#125; 表格标题</span><br><span class="line">	 </span><br><span class="line">	 </span><br><span class="line">	 对于表格设置：l表示左 c居中  r靠右</span><br><span class="line">	 			|表示竖线 <span class="keyword">\hline</span> 表示横线</span><br><span class="line">	 			||双竖线 <span class="keyword">\hline</span><span class="keyword">\hline</span>双横线</span><br><span class="line">	 对于表格中数据填写用<span class="built_in">&amp;</span>隔开</span><br><span class="line">	 <span class="keyword">\begin</span>&#123;tabular&#125;&#123;|c|c|&#125;</span><br><span class="line">     		<span class="keyword">\hline</span></span><br><span class="line">     		a<span class="built_in">&amp;</span>b<span class="keyword">\\</span><span class="keyword">\hline</span></span><br><span class="line">     		对于<span class="keyword">\\</span><span class="keyword">\hline</span> 表示的是换行然后加横线</span><br><span class="line">     <span class="keyword">\end</span>&#123;tabular&#125;		</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于网站可以直接生成代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.tablesgenerator.com/</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>本身不支持插图功能，需要有<code>graphicx</code>宏包导入辅助支持</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line">导言引入这个包</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[h]</span><br><span class="line">	<span class="keyword">\centering</span></span><br><span class="line">	<span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125;  调整图片大小以及位置</span><br><span class="line">	<span class="keyword">\caption</span>&#123;名字&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="两个图片并排放"><a href="#两个图片并排放" class="headerlink" title="两个图片并排放"></a>两个图片并排放</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[h]</span><br><span class="line">    <span class="keyword">\begin</span>&#123;minipage&#125;[t]&#123;0.5<span class="keyword">\linewidth</span>&#125;</span><br><span class="line">        <span class="keyword">\centering</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125;  调整图片大小以及位置</span><br><span class="line">        <span class="keyword">\caption</span>&#123;名字&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;minipage&#125;</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">\begin</span>&#123;minipage&#125;[t]&#123;0.5<span class="keyword">\linewidth</span>&#125; 这里面参数显示图片用一行的一半</span><br><span class="line">        <span class="keyword">\centering</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125;  调整图片大小以及位置</span><br><span class="line">        <span class="keyword">\caption</span>&#123;名字&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;minipage&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="对于四个图片分开放置"><a href="#对于四个图片分开放置" class="headerlink" title="对于四个图片分开放置"></a>对于四个图片分开放置</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">首先导入包 <span class="keyword">\usepackage</span>&#123;subfigure&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[htbp]</span><br><span class="line">	<span class="keyword">\centering</span></span><br><span class="line">	<span class="keyword">\subfigure</span>[name]&#123;</span><br><span class="line"> <span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125; <span class="keyword">\label</span>&#123;1&#125; 调整图片大小以及位置</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\quad</span>  一个空格</span><br><span class="line">		<span class="keyword">\subfigure</span>[name]&#123;</span><br><span class="line"> <span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125; <span class="keyword">\label</span>&#123;2&#125; 调整图片大小以及位置</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">\quad</span>  一个空格</span><br><span class="line">		<span class="keyword">\subfigure</span>[name]&#123;</span><br><span class="line"> <span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125; <span class="keyword">\label</span>&#123;3&#125; 调整图片大小以及位置</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">\quad</span>  一个空格</span><br><span class="line">		<span class="keyword">\subfigure</span>[name]&#123;</span><br><span class="line"> <span class="keyword">\includegraphics</span>[width=10cm,height=8cm]&#123;图片位置&#125; <span class="keyword">\label</span>&#123;4&#125; 调整图片大小以及位置</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="keyword">\caption</span>&#123;名字&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片缩放命令"><a href="#图片缩放命令" class="headerlink" title="图片缩放命令"></a>图片缩放命令</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[scale=0.03]&#123;位置&#125;</span><br><span class="line">变成原来的图片的多少倍</span><br></pre></td></tr></table></figure>
+
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><h3 id="行内公式，使用-符号"><a href="#行内公式，使用-符号" class="headerlink" title="行内公式，使用$符号"></a>行内公式，使用$符号</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">eg：</span><br><span class="line"><span class="built_in">$</span>f(t)=cos(<span class="keyword">\omega</span> t + <span class="keyword">\varphi</span>)<span class="built_in">$</span></span><br><span class="line">没必要去背，编译器自带</span><br></pre></td></tr></table></figure>
+
+<h3 id="公式环境包裹——自动编号"><a href="#公式环境包裹——自动编号" class="headerlink" title="公式环境包裹——自动编号"></a>公式环境包裹——自动编号</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">	f(x)=ax+b</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">引入包</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align&#125;</span><br><span class="line">	a<span class="built_in">&amp;</span>=b+c<span class="keyword">\\</span></span><br><span class="line">	<span class="built_in">&amp;</span>=d+e</span><br><span class="line"><span class="keyword">\end</span>&#123;align&#125;</span><br><span class="line"></span><br><span class="line">公式用<span class="built_in">&amp;</span>来进行对齐</span><br></pre></td></tr></table></figure>
+
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810142352777-0a1899.png" alt="image-20220810142352777"></p>
+<h3 id="也可用来写分段函数"><a href="#也可用来写分段函数" class="headerlink" title="也可用来写分段函数"></a>也可用来写分段函数</h3><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810142510492-e95680.png" alt="image-20220810142510492"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810143026039-81f3c2.png" alt="image-20220810143026039"></p>
+<h1 id="Latex宏包"><a href="#Latex宏包" class="headerlink" title="Latex宏包"></a>Latex宏包</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809141744729-e932d2.png" alt="image-20220809141744729"></p>
+<h1 id="对于团队合作"><a href="#对于团队合作" class="headerlink" title="对于团队合作"></a>对于团队合作</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809142213471-b645a1.png" alt="image-20220809142213471"></p>
+<h1 id="对于中文排版"><a href="#对于中文排版" class="headerlink" title="对于中文排版"></a>对于中文排版</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220809142240940-e0a7e6.png" alt="image-20220809142240940"></p>
+<h1 id="字符排版"><a href="#字符排版" class="headerlink" title="字符排版"></a>字符排版</h1><p>对于latex中的字符，行末的回车视为一个空格，但是连续两个回车就是一个空行，多个空行被认识为一个空行</p>
+<p>也可以使用\par命令</p>
+<p>对于%表示注释</p>
+<p>$^_用于排版数学公式</p>
+<p>&amp;用于排班表格</p>
+<p>如果要输入以上字符，需要带上反斜线</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">eg：<span class="keyword">\#</span><span class="keyword">\%</span><span class="keyword">\$</span></span><br><span class="line"></span><br><span class="line">对于要输入一个字符串<span class="keyword">\text</span>&#123;string&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="字体改变"><a href="#字体改变" class="headerlink" title="字体改变"></a>字体改变</h1><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810143120623-b1a6dd.png" alt="image-20220810143120623"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810143240915-32d562.png" alt="image-20220810143240915"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810143308242-9d4259.png" alt="image-20220810143308242"></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">首先需要导入包</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;fancyhdr&#125;</span><br><span class="line"><span class="keyword">\pagestyle</span>&#123;fancy&#125;</span><br><span class="line"><span class="keyword">\lhead</span>&#123;&#125; 页眉的左边</span><br><span class="line"><span class="keyword">\chead</span>&#123;&#125; 页眉的中边</span><br><span class="line"><span class="keyword">\rhead</span>&#123;&#125; 页眉的右边</span><br><span class="line"><span class="keyword">\lfoot</span>&#123;&#125; 页脚</span><br><span class="line"><span class="keyword">\cfoot</span>&#123;<span class="keyword">\thepage</span>&#125; 页脚中间显示页数</span><br><span class="line"></span><br><span class="line"><span class="keyword">\renewcommand</span>&#123;<span class="keyword">\headrulewidth</span>&#125;&#123;0.4pt&#125; 设置页眉上有一条横线</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><code>BIBTEX</code></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810143949736-daf198.png" alt="image-20220810143949736"></p>
+<h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><p>首先进行引用</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810144047498-3b91af.png" alt="image-20220810144047498"></p>
+<p>然后保存到bib文件中</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810144107353-351e03.png" alt="image-20220810144107353"></p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810144131085-0dfadc.png" alt="image-20220810144131085"></p>
+<p>之后再导言区引入样式</p>
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810144327278-17b5ec.png" alt="image-20220810144327278"></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\bibliographystyle</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/01/11/image-20220810144425764-d85a90.png" alt="image-20220810144425764"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="qq:860211327">Curry Jay</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://curry-jay.github.io/posts/23163.html">https://curry-jay.github.io/posts/23163.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://curry-jay.github.io" target="_blank">Curry的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">软件使用技巧</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/30795.html" title="数学建模论文"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/race/Math/MathPaper.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">数学建模论文</div></div><div class="info-2"><div class="info-item-1">        模型分析        模型检验   标题 摘要  不足一般都不写    摘要一般最后写，整个团队参与 关键词 问题重述  模型假设 模型建立      建立模型的方法  结果分析 结果表示 模型评价   参考文献 后面的短文回复 附录  </div></div></div></a><a class="pagination-related" href="/posts/29954.html" title="前端遗忘"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/background.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">前端遗忘</div></div><div class="info-2"><div class="info-item-1">前端遗忘字体居中相当于对于一个块元素，都可以试试，整个占据一整行对于字体的居中，ul和h1在进行居中的时候，块元素居中，即包裹不仅仅包括自己，可以采用这种方法  text-align: center;  表格线条合并对每一个单元格和表格，都有边框，对他们的边框进行重合  border-collapse: collapse;  利用Jquery对集合遍历$(rowData).each(function (index, Student) &#123;&#125;）  表单参数获取let params = $(&quot;#stuAddForm&quot;).serialize();  清空表单$(&quot;#stuAddForm&quot;)[0].reset();  ajax设置contentType: &#x27;application/json&#x27;,设置传递的对象是JSON对象JSON.stringify() JSON对象转化为字符串  获取表格的值$(&quot;#stuAddForm...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/19491.html" title="typora破解"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/software/typora.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-05</div><div class="info-item-2">typora破解</div></div><div class="info-2"><div class="info-item-1">用于管理Typora过期进行时间修改参考网址 https://blog.csdn.net/no_say_you_know/article/details/125806545?spm=1001.2014.3001.5502 首先，需要Python环境，然后GitHub下载 第一步，安装需要的包。 进入下载好的仓库文件夹，比如我这里D:\GithubRepo\typoraCracker，然后右键打开终端（方式自行选择）   pip install -r requirements.txt    2继续敲入命令 python typora.py &quot;C:\Program Files\Typora\resources\app.asar&quot; .    在当前文件夹下，会生成dec_app文件夹，查看 dec_app 目录的 License.js 文件，记事本或者VS Code打开都行。搜索This beta version of Typora is expired, please download and install a newer...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Curry Jay</div><div class="author-info-description">xjtu软件工程在读研究生</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Curry-jay"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是我的博客，欢迎光临我的博客，刚开始搭建内容</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E8%A8%80%E5%8C%BA"><span class="toc-number">1.</span> <span class="toc-text">导言区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E2%80%94%E2%80%94%E5%9C%A8begin%E4%B8%AD%E6%B7%BB%E5%8A%A0"><span class="toc-number">2.</span> <span class="toc-text">基本结构——在begin中添加</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E8%B0%83"><span class="toc-number">2.1.</span> <span class="toc-text">强调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E4%B8%8E%E6%96%AD%E8%A1%8C"><span class="toc-number">2.2.</span> <span class="toc-text">分页与断行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B0%8F%E8%8A%82%E5%92%8C%E7%AB%A0%E8%8A%82"><span class="toc-number">2.3.</span> <span class="toc-text">分小节和章节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%A0%87%E9%A2%98"><span class="toc-number">2.4.</span> <span class="toc-text">对于标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">2.5.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.6.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E6%94%BE%E7%BD%AE"><span class="toc-number">2.7.</span> <span class="toc-text">图片放置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">2.8.</span> <span class="toc-text">表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">2.9.</span> <span class="toc-text">图片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%9B%BE%E7%89%87%E5%B9%B6%E6%8E%92%E6%94%BE"><span class="toc-number">2.9.1.</span> <span class="toc-text">两个图片并排放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%9B%9B%E4%B8%AA%E5%9B%BE%E7%89%87%E5%88%86%E5%BC%80%E6%94%BE%E7%BD%AE"><span class="toc-number">2.9.2.</span> <span class="toc-text">对于四个图片分开放置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%BC%A9%E6%94%BE%E5%91%BD%E4%BB%A4"><span class="toc-number">2.9.3.</span> <span class="toc-text">图片缩放命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="toc-number">2.10.</span> <span class="toc-text">数学公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%BD%BF%E7%94%A8-%E7%AC%A6%E5%8F%B7"><span class="toc-number">2.10.1.</span> <span class="toc-text">行内公式，使用$符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E7%8E%AF%E5%A2%83%E5%8C%85%E8%A3%B9%E2%80%94%E2%80%94%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7"><span class="toc-number">2.10.2.</span> <span class="toc-text">公式环境包裹——自动编号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F"><span class="toc-number">2.10.3.</span> <span class="toc-text">多行公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5"><span class="toc-number">2.10.4.</span> <span class="toc-text">矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9F%E5%8F%AF%E7%94%A8%E6%9D%A5%E5%86%99%E5%88%86%E6%AE%B5%E5%87%BD%E6%95%B0"><span class="toc-number">2.10.5.</span> <span class="toc-text">也可用来写分段函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E5%AE%8F%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text">Latex宏包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%9B%A2%E9%98%9F%E5%90%88%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">对于团队合作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88"><span class="toc-number">5.</span> <span class="toc-text">对于中文排版</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%8E%92%E7%89%88"><span class="toc-number">6.</span> <span class="toc-text">字符排版</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%94%B9%E5%8F%98"><span class="toc-number">7.</span> <span class="toc-text">字体改变</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">8.1.</span> <span class="toc-text">步骤：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/LangChain/4j.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/LangChain4j/LangChain4j实战教程"/></a><div class="content"><a class="title" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程">back/LangChain4j/LangChain4j实战教程</a><time datetime="2026-01-05T13:54:44.000Z" title="发表于 2026-01-05 21:54:44">2026-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3876.html" title="Consul服务中心"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/consul.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Consul服务中心"/></a><div class="content"><a class="title" href="/posts/3876.html" title="Consul服务中心">Consul服务中心</a><time datetime="2025-09-08T14:54:09.000Z" title="发表于 2025-09-08 22:54:09">2025-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/47860.html" title="back/Linux/Docker复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Linux/docker.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/Linux/Docker复习"/></a><div class="content"><a class="title" href="/posts/47860.html" title="back/Linux/Docker复习">back/Linux/Docker复习</a><time datetime="2025-09-02T12:19:40.000Z" title="发表于 2025-09-02 20:19:40">2025-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55889.html" title="mybatisPlus复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/mybatisPlus.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mybatisPlus复习"/></a><div class="content"><a class="title" href="/posts/55889.html" title="mybatisPlus复习">mybatisPlus复习</a><time datetime="2025-07-26T09:26:46.000Z" title="发表于 2025-07-26 17:26:46">2025-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/58965.html" title="Redis原理和实战"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/Redis-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis原理和实战"/></a><div class="content"><a class="title" href="/posts/58965.html" title="Redis原理和实战">Redis原理和实战</a><time datetime="2025-07-13T13:05:12.000Z" title="发表于 2025-07-13 21:05:12">2025-07-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/top/software/latex.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Curry Jay</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎光临我的小屋!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script src="/config/js/catagory.js?1"></script><script src="https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js"></script><script type="text/javascript" src="/config/js/rightmenu.js?1"></script><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/生活/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 生活趣闻 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/后端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 后端学习 (19)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/其他/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🧑‍💻 其他内容 (6)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/前端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🕵️ 前端学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/比赛/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">⛹️‍♂️ 比赛内容 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/学校学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🏫 学校学习记录 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/软件使用/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥️ 软件使用技巧 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://curry-jay.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #49B1F5}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top_first.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-17</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">欢迎来到我的小屋</a><div class="blog-slider__text">由于笔记放在实验室电脑和自己电脑上查询不方便，所以想做一个博客将这些东西整合起来！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top/Live/toDoList.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-01-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">待办清单</a><div class="blog-slider__text">统计一下待办清单!</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>

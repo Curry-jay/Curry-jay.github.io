@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LLaMA-Factory | Curry的小屋</title><meta name="author" content="Curry Jay"><meta name="copyright" content="Curry Jay"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LLaMA-Factory框架运行大模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLaMA-Factory">
+<meta property="og:url" content="https://curry-jay.github.io/posts/12365.html">
+<meta property="og:site_name" content="Curry的小屋">
+<meta property="og:description" content="LLaMA-Factory框架运行大模型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://curry-jay.github.io/image/top/llama/llama-factory.png">
+<meta property="article:published_time" content="2025-04-25T08:43:47.000Z">
+<meta property="article:modified_time" content="2025-06-27T10:20:49.840Z">
+<meta property="article:author" content="Curry Jay">
+<meta property="article:tag" content="大模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://curry-jay.github.io/image/top/llama/llama-factory.png"><link rel="shortcut icon" href="/image/favicon.png"><link rel="canonical" href="https://curry-jay.github.io/posts/12365.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Curry Jay","link":"链接: ","source":"来源: Curry的小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LLaMA-Factory',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/config/css/custom_homeCenter.css?v1"><link rel="stylesheet" href="/config/css/catagory.css?v1"><link rel="stylesheet" href="/config/css/tag.css?v1"><link rel="stylesheet" href="/config/css/rightmenu.css?v1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/theme-chalk/index.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="fas fa-angle-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="fas fa-angle-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="fas fa-sync-alt"></i></div><div class="rightMenu-item" id="menu-darkmode"><i class="fas fa-adjust"></i></div><a class="rightMenu-item" href="/" id="menu-home"><i class="fas fa-home"></i></a></div><div class="rightMenu-group rightMenu-line rightMenuPost"><div class="rightMenu-item" id="menu-reading"><i class="fas fa-book"></i><span>阅读模式</span></div><div class="rightMenu-item" id="menu-postlink"><i class="fas fa-link"></i><span>复制本文地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="fas fa-copy"></i><span>复制内容</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="fas fa-paste"></i><span>粘贴内容</span></div><div class="rightMenu-item" id="menu-search"><i class="fas fa-search"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="fab fa-internet-explorer"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="fas fa-external-link-alt"></i><span>新建窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="fas fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="fas fa-image"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="fas fa-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-copylinkimg"><i class="fas fa-link"></i><span>复制图片链接</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-translate"><i class="fas fa-language"></i><span>繁简转换</span></a><div class="rightMenu-item" id="menu-asidehide"><i class="fas fa-bars"></i><span>边栏控制</span></div></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="/tags/" id="menu-tags"><i class="fas fa-tags"></i><span>文章标签</span></a><a class="rightMenu-item" href="/posts/48081.html" id="menu-waitToDo"><i class="fas fa-th-list"></i><span>待办清单</span></a><a class="rightMenu-item" href="/categories/" id="menu-folder-open"><i class="fas fa-folder-open"></i><span>博客分类</span></a><a class="rightMenu-item" href="/posts/18872.html" id="menu-copyright"><i class="fas fa-copyright"></i><span>初衷申明</span></a></div></div><div id="rightMenu-mask"></div><div id="web_bg" style="background-color: #c0c3c5;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/top/llama/llama-factory.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/image/loading.gif" data-lazy-src="/image/curry.jpg" alt="Logo"><span class="site-name">Curry的小屋</span></a><a class="nav-page-title" href="/"><span class="site-name">LLaMA-Factory</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fas fa-pie-chart"></i><span> 统计</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div></div><div id="nav-right"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></div></nav><div id="post-info"><h1 class="post-title">LLaMA-Factory</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-25T08:43:47.000Z" title="发表于 2025-04-25 16:43:47">2025-04-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-27T10:20:49.840Z" title="更新于 2025-06-27 18:20:49">2025-06-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="LLaMA-Factory-QuickStart"><a href="#LLaMA-Factory-QuickStart" class="headerlink" title="LLaMA-Factory QuickStart"></a>LLaMA-Factory QuickStart</h1><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/695287607">https://zhuanlan.zhihu.com/p/695287607</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/hiyouga/LLaMA-Factory.git</span><br><span class="line">conda create -n llama_factory python=<span class="number">3.10</span></span><br><span class="line">conda activate llama_factory</span><br><span class="line">cd LLaMA-Factory</span><br><span class="line">pip install -e <span class="string">&#x27;.[torch,metrics]&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上述的安装命令完成了如下几件事</span><br><span class="line"></span><br><span class="line">新建一个LLaMA-Factory 使用的python环境（可选）</span><br><span class="line">安装LLaMA-Factory 所需要的第三方基础库（requirements.txt包含的库）</span><br><span class="line">安装评估指标所需要的库，包含nltk, jieba, rouge-chinese</span><br><span class="line">安装LLaMA-Factory本身，然后在系统中生成一个命令 llamafactory-cli（具体用法见下方教程）</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.cuda.current_device()</span><br><span class="line">torch.cuda.get_device_name(<span class="number">0</span>)</span><br><span class="line">torch.__version__</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">使用 llamafactory-cli version 来快速校验安装是否成功</span><br></pre></td></tr></table></figure>
+
+<h2 id="模型下载"><a href="#模型下载" class="headerlink" title="模型下载"></a>模型下载</h2><p>项目支持通过模型名称直接从huggingface 和modelscope下载模型，但这样不容易对模型文件进行统一管理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Meta-Llama-3-8B-Instruct为例</span><br><span class="line"></span><br><span class="line">modelscope 下载（适合中国大陆网络环境）</span><br><span class="line">git clone https://www.modelscope.cn/LLM-Research/Meta-Llama-3-8B-Instruct.git</span><br><span class="line">这种方法下载失败了</span><br><span class="line"></span><br><span class="line">使用的方法是在linux里面下载安装</span><br><span class="line">pip install modelscope</span><br><span class="line"></span><br><span class="line">然后进行下载</span><br><span class="line">modelscope download --model LLM-Research/Meta-Llama-3-8B-Instruct --local_dir ./ </span><br><span class="line"></span><br><span class="line">/pk-data-4T/yingchaohe/Model/Meta-Llama-3-8B-Instruct/</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试下载是否完整"><a href="#测试下载是否完整" class="headerlink" title="测试下载是否完整"></a>测试下载是否完整</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> transformers</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换为你下载的模型文件目录, 这里的demo是Llama-3-8B-Instruct</span></span><br><span class="line"><span class="comment"># 如果是其他模型，比如qwen，chatglm，请使用其对应的官方demo</span></span><br><span class="line">model_id = <span class="string">&quot;/home/ubuntu/model/Meta-Llama-3-8B-Instruct/&quot;</span></span><br><span class="line"></span><br><span class="line">pipeline = transformers.pipeline(</span><br><span class="line">    <span class="string">&quot;text-generation&quot;</span>,</span><br><span class="line">    model=model_id,</span><br><span class="line">    model_kwargs=&#123;<span class="string">&quot;torch_dtype&quot;</span>: torch.float16&#125;,</span><br><span class="line">    device_map=&#123;<span class="string">&quot;&quot;</span>: <span class="string">&quot;cuda:0&quot;</span>&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">messages = [</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;You are a pirate chatbot who always responds in pirate speak!&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Who are you?&quot;</span>&#125;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">prompt = pipeline.tokenizer.apply_chat_template(</span><br><span class="line">        messages,</span><br><span class="line">        tokenize=<span class="literal">False</span>,</span><br><span class="line">        add_generation_prompt=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">terminators = [</span><br><span class="line">    pipeline.tokenizer.eos_token_id,</span><br><span class="line">    pipeline.tokenizer.convert_tokens_to_ids(<span class="string">&quot;&lt;|eot_id|&gt;&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">outputs = pipeline(</span><br><span class="line">    prompt,</span><br><span class="line">    max_new_tokens=<span class="number">256</span>,</span><br><span class="line">    eos_token_id=terminators,</span><br><span class="line">    do_sample=<span class="literal">True</span>,</span><br><span class="line">    temperature=<span class="number">0.6</span>,</span><br><span class="line">    top_p=<span class="number">0.9</span>,</span><br><span class="line">    batch_size=<span class="number">1</span>  <span class="comment"># 设置较小的批量大小</span></span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(outputs[<span class="number">0</span>][<span class="string">&quot;generated_text&quot;</span>][<span class="built_in">len</span>(prompt):])</span><br></pre></td></tr></table></figure>
+
+<h3 id="下载数据"><a href="#下载数据" class="headerlink" title="下载数据"></a>下载数据</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">修改数据注册文件</span><br><span class="line">修改文件：LLaMA-Factory/data/dataset_info.json，目的是为了让LLaMA-Factory识别到我们的数据集文件。</span><br><span class="line"></span><br><span class="line">注：其中columns指定了数据集的列。</span><br><span class="line"></span><br><span class="line">&quot;fintech&quot;: &#123;</span><br><span class="line">  &quot;file_name&quot;: &quot;fintech.json&quot;,</span><br><span class="line">  &quot;columns&quot;: &#123;</span><br><span class="line">    &quot;prompt&quot;: &quot;instruction&quot;,</span><br><span class="line">    &quot;query&quot;: &quot;input&quot;,</span><br><span class="line">    &quot;response&quot;: &quot;output&quot;,</span><br><span class="line">    &quot;history&quot;: &quot;history&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="运行web界面"><a href="#运行web界面" class="headerlink" title="运行web界面"></a>运行web界面</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export DEFAULT_CACHE_DIR=/home/ubuntu/model/cache 设置缓存文件位置</span><br><span class="line">CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli webui</span><br><span class="line"></span><br><span class="line">这样启动了</span><br><span class="line">sudo CUDA_VISIBLE_DEVICES=0,1  GRADIO_SERVER_PORT=60620  GRADIO_SHARE=1 -E /home/ubuntu/anaconda3/envs/llama_factory/bin/llamafactory-cli webui</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo CUDA_VISIBLE_DEVICES=0,1  GRADIO_SERVER_PORT=60620  GRADIO_SERVER_NAME=202.117.43.30 -E /home/ubuntu/anaconda3/envs/llama_factory/bin/llamafactory-cli webui</span><br></pre></td></tr></table></figure>
+
+<h2 id="基于LoRA的sft指令微调"><a href="#基于LoRA的sft指令微调" class="headerlink" title="基于LoRA的sft指令微调"></a>基于LoRA的sft指令微调</h2><p>注意路径</p>
+<p>Chinese版本的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train \</span><br><span class="line">    --stage sft \</span><br><span class="line">    --do_train \</span><br><span class="line">    --model_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct \</span><br><span class="line">    --dataset alpaca_zh_demo,identity,adgen_local \</span><br><span class="line">    --dataset_dir /home/ubuntu/model/LLaMA-Factory/data/ \</span><br><span class="line">    --template llama3 \</span><br><span class="line">    --finetuning_type lora \</span><br><span class="line">    --output_dir /home/ubuntu/model/Meta-Llama-3-8B-Instruct-savaModel/ \</span><br><span class="line">    --overwrite_cache \</span><br><span class="line">    --overwrite_output_dir \</span><br><span class="line">    --cutoff_len 1024 \</span><br><span class="line">    --preprocessing_num_workers 16 \</span><br><span class="line">    --per_device_train_batch_size 2 \</span><br><span class="line">    --per_device_eval_batch_size 1 \</span><br><span class="line">    --gradient_accumulation_steps 8 \</span><br><span class="line">    --lr_scheduler_type cosine \</span><br><span class="line">    --logging_steps 50 \</span><br><span class="line">    --warmup_steps 20 \</span><br><span class="line">    --save_steps 100 \</span><br><span class="line">    --eval_steps 50 \</span><br><span class="line">    --evaluation_strategy steps \</span><br><span class="line">    --load_best_model_at_end \</span><br><span class="line">    --learning_rate 5e-5 \</span><br><span class="line">    --num_train_epochs 5.0 \</span><br><span class="line">    --max_samples 1000 \</span><br><span class="line">    --val_size 0.1 \</span><br><span class="line">    --plot_loss \</span><br><span class="line">    --fp16</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>stage</td>
+<td>当前训练的阶段，枚举值，有“sft”,”pt”,”rm”,”ppo”等，代表了训练的不同阶段，这里我们是有监督指令微调，所以是sft</td>
+</tr>
+<tr>
+<td>do_train</td>
+<td>是否是训练模式</td>
+</tr>
+<tr>
+<td>dataset</td>
+<td>使用的数据集列表，所有字段都需要按上文在data_info.json里注册，多个数据集用”,”分隔</td>
+</tr>
+<tr>
+<td>dataset_dir</td>
+<td>数据集所在目录，这里是 data，也就是项目自带的data目录</td>
+</tr>
+<tr>
+<td>finetuning_type</td>
+<td>微调训练的类型，枚举值，有”lora”,”full”,”freeze”等，这里使用lora</td>
+</tr>
+<tr>
+<td>output_dir</td>
+<td>训练结果保存的位置</td>
+</tr>
+<tr>
+<td>cutoff_len</td>
+<td>训练数据集的长度截断</td>
+</tr>
+<tr>
+<td>per_device_train_batch_size</td>
+<td>每个设备上的batch size，最小是1，如果GPU 显存够大，可以适当增加</td>
+</tr>
+<tr>
+<td>fp16</td>
+<td>使用半精度混合精度训练</td>
+</tr>
+<tr>
+<td>max_samples</td>
+<td>每个数据集采样多少数据</td>
+</tr>
+<tr>
+<td>val_size</td>
+<td>随机从数据集中抽取多少比例的数据作为验证集</td>
+</tr>
+</tbody></table>
+<p>另外两个关键参数解释如下，后续的基本所有环节都会继续使用这两个参数</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>model_name_or_path</td>
+<td>参数的名称（huggingface或者modelscope上的标准定义，如“meta-llama&#x2F;Meta-Llama-3-8B-Instruct”）， 或者是本地下载的绝对路径，如&#x2F;media&#x2F;codingma&#x2F;LLM&#x2F;llama3&#x2F;Meta-Llama-3-8B-Instruct</td>
+</tr>
+<tr>
+<td>template</td>
+<td>模型问答时所使用的prompt模板，不同模型不同，请参考 <a href="https://link.zhihu.com/?target=https://github.com/hiyouga/LLaMA-Factory?tab=readme-ov-file%23supported-models">https://github.com/hiyouga/LLaMA-Factory?tab=readme-ov-file#supported-models</a> 获取不同模型的模板定义，否则会回答结果会很奇怪或导致重复生成等现象的出现。chat 版本的模型基本都需要指定，比如Meta-Llama-3-8B-Instruct的template 就是 llama3</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=0,1:</span><br><span class="line">指定使用哪些GPU进行训练。0,1表示使用GPU 0和GPU 1。你可以根据可用的GPU资源来调整。如果你只有一个GPU，可以设置为CUDA_VISIBLE_DEVICES=0。</span><br><span class="line"></span><br><span class="line">--stage sft:</span><br><span class="line">指定训练的阶段。在这里是SFT（Supervised Fine-tuning），即监督微调。如果进行不同阶段的训练（如预训练或推理），需要更改这个值。</span><br><span class="line"></span><br><span class="line">--do_train:</span><br><span class="line">表示进行训练。如果只需要进行推理或评估，可以去掉这个参数。</span><br><span class="line"></span><br><span class="line">--model_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct:</span><br><span class="line">指定预训练模型的路径或名称。这个路径需要指向你已经下载或训练好的模型。如果你想换用其他模型，可以调整这个参数。</span><br><span class="line"></span><br><span class="line">--dataset dianwang01:</span><br><span class="line">指定数据集的名称。你可以根据需要使用不同的数据集名称。</span><br><span class="line"></span><br><span class="line">--dataset_dir /home/ubuntu/model/LLaMA-Factory/data/:</span><br><span class="line">指定数据集的目录。根据数据存储位置来调整这个路径。</span><br><span class="line"></span><br><span class="line">--template llama3:</span><br><span class="line">指定使用的模板。模板通常定义了输入数据的格式。可以根据不同的数据类型和任务选择不同的模板。</span><br><span class="line"></span><br><span class="line">--finetuning_type lora:</span><br><span class="line">指定微调类型，lora是低秩适应（LoRA）技术，可以减少显存使用。如果你有更多显存，可以选择其他微调方法，如全模型微调。</span><br><span class="line"></span><br><span class="line">--output_dir /home/ubuntu/model/Model/Meta-Llama-3-8B-Instruct-dianwang001/Meta-Llama-3-8B-Instruct-savaModel/:</span><br><span class="line">模型保存的输出路径。确保输出路径正确且有足够存储空间。</span><br><span class="line"></span><br><span class="line">--overwrite_cache:</span><br><span class="line">重新生成数据缓存。如果数据有变化或缓存出现问题，可以使用这个选项。</span><br><span class="line"></span><br><span class="line">--overwrite_output_dir:</span><br><span class="line">覆盖输出目录。如果之前已有训练结果并且你想重新训练，启用这个选项。</span><br><span class="line"></span><br><span class="line">--cutoff_len 2048:</span><br><span class="line">最大序列长度。根据模型大小和数据情况可以调高或调低。例如，显存不足时可以调低此值。</span><br><span class="line"></span><br><span class="line">--preprocessing_num_workers 16:</span><br><span class="line">数据预处理的工作线程数。可以根据CPU核数和数据预处理复杂度来调整。更多的线程可以加速预处理，但可能增加系统负载。</span><br><span class="line"></span><br><span class="line">--per_device_train_batch_size 1:</span><br><span class="line">每个设备（GPU）的训练批次大小。显存不足时可以调小此值，显存充足时可以调大以提高训练效率。</span><br><span class="line"></span><br><span class="line">--per_device_eval_batch_size 1:</span><br><span class="line">每个设备的评估批次大小。同样地，显存不足时调小，显存充足时调大。</span><br><span class="line"></span><br><span class="line">--gradient_accumulation_steps 8:</span><br><span class="line">梯度累计步数。显存不足时可以增加此值，以模拟更大的批次大小而不占用过多显存。</span><br><span class="line"></span><br><span class="line">--lr_scheduler_type cosine:</span><br><span class="line">学习率调度器类型，cosine表示余弦退火学习率。如果你需要更稳定的学习率调整，可以选择其他调度器类型。</span><br><span class="line"></span><br><span class="line">--logging_steps 500:</span><br><span class="line">日志记录的步数间隔。根据你希望记录日志的频率可以调整这个值。</span><br><span class="line"></span><br><span class="line">--warmup_steps 200:</span><br><span class="line">学习率预热的步数。在训练初期，模型通常学习率较低，然后逐渐提高。可以根据需要调整预热步数，数据量大时可以增加。</span><br><span class="line"></span><br><span class="line">--save_steps 1000:</span><br><span class="line">保存模型的步数间隔。可以根据训练时长和硬盘空间调整保存频率。</span><br><span class="line"></span><br><span class="line">--eval_steps 500:</span><br><span class="line">评估模型的步数间隔。可以根据训练情况和时间开销来调整评估频率。</span><br><span class="line"></span><br><span class="line">--evaluation_strategy steps:</span><br><span class="line">评估策略。steps表示按步数评估，也可以选择epoch按训练轮次评估。</span><br><span class="line"></span><br><span class="line">--load_best_model_at_end:</span><br><span class="line">在训练结束后加载表现最好的模型。一般启用此选项可以确保最终得到最优模型。</span><br><span class="line"></span><br><span class="line">--learning_rate 5e-5:</span><br><span class="line">初始学习率。可以根据模型和数据的复杂性调整，较大的学习率适合简单任务，较小的学习率适合复杂任务。</span><br><span class="line"></span><br><span class="line">--num_train_epochs 5.0:</span><br><span class="line">训练的总轮数。较大的数据集和复杂的任务可以增加训练轮数，小数据集可以减少。</span><br><span class="line"></span><br><span class="line">--max_samples 10000:</span><br><span class="line">最大样本数量。可以根据任务的数据量和训练目标调整，设定上限可以节省时间和资源。</span><br><span class="line"></span><br><span class="line">--val_size 0.1:</span><br><span class="line">验证集比例，0.1表示10%的数据作为验证集。可以根据数据量调整此比例。</span><br><span class="line"></span><br><span class="line">--plot_loss:</span><br><span class="line">绘制损失曲线，启用此选项可以直观查看训练过程中的损失变化。</span><br><span class="line"></span><br><span class="line">--fp16:</span><br><span class="line">使用半精度浮点数训练，减小显存占用并加快训练。如果硬件支持，可以启用。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2. --per_device_train_batch_size</span><br><span class="line">作用：每个设备（如 GPU）上训练时的批次大小。该参数会影响模型训练的稳定性和速度。更大的批次可以提高训练效率，但需要更多显存。</span><br><span class="line">调节：增加批次大小可以加速训练，但如果显存不够，可能导致 OOM（Out of Memory）。通常建议在你的 GPU 显存允许范围内调整。</span><br><span class="line">3. --per_device_eval_batch_size</span><br><span class="line">作用：每个设备上评估时的批次大小。评估时可以使用较小的批次大小，因为不需要进行反向传播。</span><br><span class="line">调节：评估时通常不需要过大的批次，1 或 2 就足够。这个值主要受显存影响。</span><br><span class="line">4. --gradient_accumulation_steps</span><br><span class="line">作用：梯度累积步数。在显存有限的情况下，使用较小的批次进行训练，然后累积梯度并更新权重。它可以让你在不增加显存消耗的情况下使用较大的“有效”批次大小。</span><br><span class="line">调节：增加 gradient_accumulation_steps 可以减少显存的消耗，但会增加训练时间。通常，如果显存较紧张，可以将其调高。</span><br><span class="line">--warmup_steps</span><br><span class="line">作用：预热步数，训练开始时，学习率从 0 慢慢增加到设定值，以避免模型在训练初期由于学习率过大而不稳定。</span><br><span class="line">调节：通常设定为训练总步数的 10%-20%。如果训练开始不稳定，可以适当增加 warmup_steps。</span><br><span class="line">7. --num_train_epochs</span><br><span class="line">作用：训练的总轮数。每一轮是整个数据集被训练一次。</span><br><span class="line">调节：较多的轮数通常能使模型学到更多，但也会增加训练时间。你可以根据模型收敛情况调整轮数。如果训练数据较小，可以适当增加；如果数据很大，可能需要减少轮数。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="功能控制"><a href="#功能控制" class="headerlink" title="功能控制"></a>功能控制</h2><p>通过不同的参数控制现在是实现什么功能，比如现在是想使用网页版本直接推理，所以第一个参数设置为webchat, 所有的可选项包括</p>
+<table>
+<thead>
+<tr>
+<th>动作参数枚举</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>version</td>
+<td>显示版本信息</td>
+</tr>
+<tr>
+<td>train</td>
+<td>命令行版本训练</td>
+</tr>
+<tr>
+<td>chat</td>
+<td>命令行版本推理chat</td>
+</tr>
+<tr>
+<td>export</td>
+<td>模型合并和导出</td>
+</tr>
+<tr>
+<td>api</td>
+<td>启动API server，供接口调用</td>
+</tr>
+<tr>
+<td>eval</td>
+<td>使用mmlu等标准数据集做评测</td>
+</tr>
+<tr>
+<td>webchat</td>
+<td>前端版本纯推理的chat页面</td>
+</tr>
+<tr>
+<td>webui</td>
+<td>启动LlamaBoard前端页面，包含可视化训练，预测，chat，模型合并多个子页面</td>
+</tr>
+</tbody></table>
+<h2 id="运行完成后尝试进行推理"><a href="#运行完成后尝试进行推理" class="headerlink" title="运行完成后尝试进行推理"></a>运行完成后尝试进行推理</h2><p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/04/25/image-20250227132033017-a58804-9b523e.png" alt="image-20250227132033017"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[INFO|trainer.py:4263] 2025-02-26 16:46:40,376 &gt;&gt;   Batch size = 1</span><br><span class="line">100%|█████████████████████████████████████████████████████████████████████████████████████| 105/105 [00:10&lt;00:00,  9.67it/s]</span><br><span class="line">***** eval metrics *****</span><br><span class="line">  epoch                   =     4.9851</span><br><span class="line">  eval_loss               =     1.8326</span><br><span class="line">  eval_runtime            = 0:00:10.94</span><br><span class="line">  eval_samples_per_second =     19.188</span><br><span class="line">  eval_steps_per_second   =      9.594</span><br><span class="line">[INFO|modelcard.py:449] 2025-02-26 16:46:51,323 &gt;&gt; Dropping the following result as it does not have all the necessary fields:</span><br><span class="line">&#123;&#x27;task&#x27;: &#123;&#x27;name&#x27;: &#x27;Causal Language Modeling&#x27;, &#x27;type&#x27;: &#x27;text-generation&#x27;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli chat \</span><br><span class="line">    --model_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct  \</span><br><span class="line">    --adapter_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct-savaModel/   \</span><br><span class="line">    --template llama3 \</span><br><span class="line">    --finetuning_type lora \</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src= "/image/loading.gif" data-lazy-src="/image/loading.gif" data-original="https://raw.githubusercontent.com/Curry-jay/image-store/main/PicGo/2025/04/25/image-20250227141543068-f3979a.png" alt="image-20250227141543068"></p>
+<h2 id="批量预测和训练效果评估"><a href="#批量预测和训练效果评估" class="headerlink" title="批量预测和训练效果评估"></a>批量预测和训练效果评估</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">当然上文中的人工交互测试，会偏感性，那有没有办法批量地预测一批数据，然后使用自动化的bleu和 rouge等常用的文本生成指标来做评估。指标计算会使用如下3个库，请先做一下pip安装</span><br><span class="line"></span><br><span class="line">pip install jieba</span><br><span class="line">pip install rouge-chinese</span><br><span class="line">pip install nltk</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train \</span><br><span class="line">    --stage sft \</span><br><span class="line">    --do_predict \</span><br><span class="line">    --model_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct  \</span><br><span class="line">    --adapter_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct-savaModel/  \</span><br><span class="line">    --eval_dataset alpaca_zh_demo,identity,adgen_local \</span><br><span class="line">    --dataset_dir /home/ubuntu/model/LLaMA-Factory/data/ \</span><br><span class="line">    --template llama3 \</span><br><span class="line">    --finetuning_type lora \</span><br><span class="line">    --output_dir /home/ubuntu/model/Meta-Llama-3-8B-Instruct-predict/ \</span><br><span class="line">    --overwrite_cache \</span><br><span class="line">    --overwrite_output_dir \</span><br><span class="line">    --cutoff_len 1024 \</span><br><span class="line">    --preprocessing_num_workers 16 \</span><br><span class="line">    --per_device_eval_batch_size 1 \</span><br><span class="line">    --max_samples 20 \</span><br><span class="line">    --predict_with_generate</span><br></pre></td></tr></table></figure>
+
+<p>与训练脚本主要的参数区别如下两个</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>do_predict</td>
+<td>现在是预测模式</td>
+</tr>
+<tr>
+<td>predict_with_generate</td>
+<td>现在用于生成文本</td>
+</tr>
+<tr>
+<td>max_samples</td>
+<td>每个数据集采样多少用于预测对比</td>
+</tr>
+</tbody></table>
+<h3 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h3><p>其中 generated_predictions.jsonl 文件 输出了要预测的数据集的原始label和模型predict的结果</p>
+<p>predict_results.json给出了原始label和模型predict的结果，用自动计算的指标数据</p>
+<p>这里给相关的指标做一下进一步的解释</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BLEU-4</td>
+<td>BLEU（Bilingual Evaluation Understudy）是一种常用的用于评估机器翻译质量的指标。BLEU-4 表示四元语法 BLEU 分数，它衡量模型生成文本与参考文本之间的 n-gram 匹配程度，其中 n&#x3D;4。值越高表示生成的文本与参考文本越相似，最大值为 100。</td>
+</tr>
+<tr>
+<td>predict_rouge-1 和 predict_rouge-2</td>
+<td>ROUGE（Recall-Oriented Understudy for Gisting Evaluation）是一种用于评估自动摘要和文本生成模型性能的指标。ROUGE-1 表示一元 ROUGE 分数，ROUGE-2 表示二元 ROUGE 分数，分别衡量模型生成文本与参考文本之间的单个词和双词序列的匹配程度。值越高表示生成的文本与参考文本越相似，最大值为 100。</td>
+</tr>
+<tr>
+<td>predict_rouge-l</td>
+<td>ROUGE-L 衡量模型生成文本与参考文本之间最长公共子序列（Longest Common Subsequence）的匹配程度。值越高表示生成的文本与参考文本越相似，最大值为 100。</td>
+</tr>
+<tr>
+<td>predict_runtime</td>
+<td>预测运行时间，表示模型生成一批样本所花费的总时间。单位通常为秒。</td>
+</tr>
+<tr>
+<td>predict_samples_per_second</td>
+<td>每秒生成的样本数量，表示模型每秒钟能够生成的样本数量。通常用于评估模型的推理速度。</td>
+</tr>
+<tr>
+<td>predict_steps_per_second</td>
+<td>每秒执行的步骤数量，表示模型每秒钟能够执行的步骤数量。对于生成模型，一般指的是每秒钟执行生成操作的次数。</td>
+</tr>
+</tbody></table>
+<h2 id="LoRA模型合并导出"><a href="#LoRA模型合并导出" class="headerlink" title="LoRA模型合并导出"></a><strong>LoRA模型合并导出</strong></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">把训练的LoRA和原始的大模型进行融合，输出一个完整的模型文件的话，可以使用如下命令。合并后的模型可以自由地像使用原始的模型一样应用到其他下游环节，当然也可以递归地继续用于训练</span><br><span class="line"></span><br><span class="line">CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli export \</span><br><span class="line">     --model_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct  \</span><br><span class="line">    --adapter_name_or_path /home/ubuntu/model/Meta-Llama-3-8B-Instruct-savaModel/  \</span><br><span class="line">    --template llama3 \</span><br><span class="line">    --finetuning_type lora \</span><br><span class="line">    --export_dir /home/ubuntu/model/Meta-Llama-3-8B-Instruct-megred-model/ \</span><br><span class="line">    --export_size 2 \</span><br><span class="line">    --export_device cpu \</span><br><span class="line">    --export_legacy_format False</span><br></pre></td></tr></table></figure>
+
+<h2 id="出GGUF，部署Ollama"><a href="#出GGUF，部署Ollama" class="headerlink" title="出GGUF，部署Ollama"></a>出GGUF，部署Ollama</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GGUF 是 lllama.cpp 设计的大模型存储格式，可以对模型进行高效的压缩，减少模型的大小与内存占用，从而提升模型的推理速度和效率。Ollama框架可以帮助用户快速使用本地的大型语言模型，那如何将LLaMA-Factory项目的训练结果 导出到Ollama中部署呢？需要经过如下几个步骤</span><br><span class="line"></span><br><span class="line">将lora模型合并</span><br><span class="line">安装gguf库</span><br><span class="line">使用llama.cpp的转换脚本将训练后的完整模型转换为gguf格式</span><br><span class="line">安装Ollama软件</span><br><span class="line">注册要部署的模型文件</span><br><span class="line">启动Ollama</span><br><span class="line">1-3 步是准备好 gguf格式的文件，这也是Ollama所需要的标准格式。</span><br><span class="line"></span><br><span class="line">4-6 步就是如何在Ollama环境中启动训练后的模型。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="安装gguf库"><a href="#安装gguf库" class="headerlink" title="安装gguf库"></a>安装gguf库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">安装gguf库</span><br><span class="line"></span><br><span class="line">笔者发现直接 pip 安装 gguf，并不是最新的版本，和最新的转换脚本会不兼容，所以还是推荐从源码安装</span><br><span class="line"></span><br><span class="line">git clone https://github.com/ggerganov/llama.cpp.git</span><br><span class="line">cd llama.cpp/gguf-py</span><br><span class="line">pip install --editable </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用llama-cpp的转换脚本将训练后的完整模型转换为gguf格式"><a href="#使用llama-cpp的转换脚本将训练后的完整模型转换为gguf格式" class="headerlink" title="使用llama.cpp的转换脚本将训练后的完整模型转换为gguf格式"></a>使用llama.cpp的转换脚本将训练后的完整模型转换为gguf格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">返回 llama.cpp 项目根目录，会有一个官方提供的 convert-hf-to-gguf.py 脚本，用于完成huggingface格式到gguf格式的转换.</span><br><span class="line"></span><br><span class="line">cd ..</span><br><span class="line">python convert_hf_to_gguf.py /home/ubuntu/model/Meta-Llama-3-8B-Instruct-megred-model --vocab-type hfft</span><br><span class="line">转换成功可在megred-model-path路径下得到如下的gguf文件</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="qq:860211327">Curry Jay</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://curry-jay.github.io/posts/12365.html">https://curry-jay.github.io/posts/12365.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://curry-jay.github.io" target="_blank">Curry的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/43782.html" title="Vue"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/front/Vue/Vue.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Vue</div></div><div class="info-2"><div class="info-item-1">VUE初始化npm i vue@2.6.13具体操作可以看nodejs文档列表模块：npm ls卸载模块：npm uninstall 模块名更新模块：npm update 模块名运行工程：npm run dev/test编译工程：npm run build  创建，构建一个IDEA（javascript项目） 并进入目录  vue init webpack     入门使用相当于new一个Vue对象  new Vue(&#123;        //选择一个组件和它进行绑定,产生一个绑定关系，和组件绑定起来        el: &quot;#app&quot;,        //数据进行绑定        data: &#123;    title: &#x27;VUE入门讲解&#x27;,&#125;        &#125;）          之后可以通过胡须表达式就可以获取到数据   &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;可以用@click...</div></div></div></a><a class="pagination-related" href="/posts/33708.html" title="RabbitMQ"><img class="cover" src= "/image/loading.gif" data-lazy-src="/image/top/back/MassageQueue/RabbitMQ.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">RabbitMQ</div></div><div class="info-2"><div class="info-item-1">同步通信和异步通信同步通讯是指发送方在发送消息后，会等待接收方的回应，直到收到回应后才会继续执行后续操作异步通讯是指发送方在发送消息后，不需要等待接收方的立即回应，就可以继续执行其他操作。接收方在处理完消息后，可能会在未来的某个时间点给出回应  同步通信 一般来说，使用同步调用的场景都有一个特点：下一步操作依赖于上一步操作的结果同步调用的缺点：	业务耦合	性能较差	级联失败  异步通信异步调用基于消息通知，一般包含三个角色消息    发送者：投递消息的人    消息代理：管理、暂存、转发消息的人    消息接收者：接收和处理消息的人   异步调用的优点1 解除耦合，拓展性强即使以后有新业务拓充，支付服务只需要发送一条消息给消息代理，让消息代理通知新业务，拓展性强2 无需等待，性能好支付服务完成之后只需要发送消息给消息代理，让消息代理通知其它服务3 故障隔离即使交易服务出现了故障，也不会影响到支付服务异步调用的缺点1 不能得到调用结果异步调用一般是通知对方执行某个操作，无法知道对方执行操作后的结果2 不确定下游业务执行是否成功异步调用通知下游业务后，无法知道下游业务是否执行成功3...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/image/loading.gif" data-lazy-src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Curry Jay</div><div class="author-info-description">xjtu软件工程在读研究生</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Curry-jay"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是我的博客，欢迎光临我的博客，刚开始搭建内容</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LLaMA-Factory-QuickStart"><span class="toc-number">1.</span> <span class="toc-text">LLaMA-Factory QuickStart</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.1.</span> <span class="toc-text">参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">验证安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.4.</span> <span class="toc-text">模型下载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%8B%E8%BD%BD%E6%98%AF%E5%90%A6%E5%AE%8C%E6%95%B4"><span class="toc-number">1.4.1.</span> <span class="toc-text">测试下载是否完整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">下载数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8Cweb%E7%95%8C%E9%9D%A2"><span class="toc-number">1.4.3.</span> <span class="toc-text">运行web界面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ELoRA%E7%9A%84sft%E6%8C%87%E4%BB%A4%E5%BE%AE%E8%B0%83"><span class="toc-number">1.5.</span> <span class="toc-text">基于LoRA的sft指令微调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">功能控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%8C%E6%88%90%E5%90%8E%E5%B0%9D%E8%AF%95%E8%BF%9B%E8%A1%8C%E6%8E%A8%E7%90%86"><span class="toc-number">1.7.</span> <span class="toc-text">运行完成后尝试进行推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E9%A2%84%E6%B5%8B%E5%92%8C%E8%AE%AD%E7%BB%83%E6%95%88%E6%9E%9C%E8%AF%84%E4%BC%B0"><span class="toc-number">1.8.</span> <span class="toc-text">批量预测和训练效果评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="toc-number">1.8.1.</span> <span class="toc-text">结果分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LoRA%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6%E5%AF%BC%E5%87%BA"><span class="toc-number">1.9.</span> <span class="toc-text">LoRA模型合并导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BAGGUF%EF%BC%8C%E9%83%A8%E7%BD%B2Ollama"><span class="toc-number">1.10.</span> <span class="toc-text">出GGUF，部署Ollama</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85gguf%E5%BA%93"><span class="toc-number">1.10.1.</span> <span class="toc-text">安装gguf库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8llama-cpp%E7%9A%84%E8%BD%AC%E6%8D%A2%E8%84%9A%E6%9C%AC%E5%B0%86%E8%AE%AD%E7%BB%83%E5%90%8E%E7%9A%84%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%BAgguf%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.10.2.</span> <span class="toc-text">使用llama.cpp的转换脚本将训练后的完整模型转换为gguf格式</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/LangChain/4j.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/LangChain4j/LangChain4j实战教程"/></a><div class="content"><a class="title" href="/posts/14547.html" title="back/LangChain4j/LangChain4j实战教程">back/LangChain4j/LangChain4j实战教程</a><time datetime="2026-01-05T13:54:44.000Z" title="发表于 2026-01-05 21:54:44">2026-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3876.html" title="Consul服务中心"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/consul.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Consul服务中心"/></a><div class="content"><a class="title" href="/posts/3876.html" title="Consul服务中心">Consul服务中心</a><time datetime="2025-09-08T14:54:09.000Z" title="发表于 2025-09-08 22:54:09">2025-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/47860.html" title="back/Linux/Docker复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Linux/docker.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="back/Linux/Docker复习"/></a><div class="content"><a class="title" href="/posts/47860.html" title="back/Linux/Docker复习">back/Linux/Docker复习</a><time datetime="2025-09-02T12:19:40.000Z" title="发表于 2025-09-02 20:19:40">2025-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55889.html" title="mybatisPlus复习"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/mybatisPlus.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mybatisPlus复习"/></a><div class="content"><a class="title" href="/posts/55889.html" title="mybatisPlus复习">mybatisPlus复习</a><time datetime="2025-07-26T09:26:46.000Z" title="发表于 2025-07-26 17:26:46">2025-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/58965.html" title="Redis原理和实战"><img src= "/image/loading.gif" data-lazy-src="/image/top/back/Database/Redis-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis原理和实战"/></a><div class="content"><a class="title" href="/posts/58965.html" title="Redis原理和实战">Redis原理和实战</a><time datetime="2025-07-13T13:05:12.000Z" title="发表于 2025-07-13 21:05:12">2025-07-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/top/llama/llama-factory.png);"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Curry Jay</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎光临我的小屋!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script src="/config/js/catagory.js?1"></script><script src="https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js"></script><script type="text/javascript" src="/config/js/rightmenu.js?1"></script><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/生活/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 生活趣闻 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/后端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 后端学习 (19)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/其他/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🧑‍💻 其他内容 (6)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/前端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🕵️ 前端学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/比赛/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">⛹️‍♂️ 比赛内容 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/学校学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🏫 学校学习记录 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://curry-jay.github.io/categories/软件使用/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥️ 软件使用技巧 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://curry-jay.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #49B1F5}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top_first.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-17</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">欢迎来到我的小屋</a><div class="blog-slider__text">由于笔记放在实验室电脑和自己电脑上查询不方便，所以想做一个博客将这些东西整合起来！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/18872.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "/image/loading.gif" data-lazy-src="/image/top/Live/toDoList.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-01-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">待办清单</a><div class="blog-slider__text">统计一下待办清单!</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/48081.html&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>
